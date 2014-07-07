@@ -19,10 +19,10 @@ set nocompatible
 "   backspace=indent,eol,start      バックスペース削除可能設定
 "   shwowhich                       コマンドを画面の最下行に表示
 "   ruler                           コマンドが何行目にあるかを表示
+"   formatoptions                   自動整形方法
 " ----------------------------------------------------------------------
 " 未使用
 "   nobackup                        バックアップファイルの作成をしない
-"   formatoptions                   自動整形方法
 "   browsedir                       ファイルの検索方法設定
 "   whichwrap
 "   showmode
@@ -43,6 +43,7 @@ set backspace=indent,eol,start
 set showcmd
 set ruler
 set backupdir=~/backup
+set formatoptions=q
 
 
 " **********************************************************************
