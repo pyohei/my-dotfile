@@ -20,6 +20,7 @@ set nocompatible
 "   shwowhich                       コマンドを画面の最下行に表示
 "   ruler                           コマンドが何行目にあるかを表示
 "   formatoptions                   自動整形方法
+"   tw                              改行位置
 " ----------------------------------------------------------------------
 " 未使用
 "   nobackup                        バックアップファイルの作成をしない
@@ -42,8 +43,9 @@ set hidden
 set backspace=indent,eol,start
 set showcmd
 set ruler
-set backupdir=~/backup
+set backupdir=~/.backup
 set formatoptions=q
+set tw=0
 
 
 " **********************************************************************
@@ -169,35 +171,104 @@ set runtimepath+=~/.vim/
 "endfunction
 
 
-" ********************************************************************
-" ファイル別設定
-" ********************************************************************
+" ---- ファイル別設定 ------
+
 " python
-" --------------------------------------------------------------------
 autocmd FileType python setl autoindent
-autocmd FileType python setl smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
+autocmd FileType python setlocal smartindent cinwords=
+    \if,elif,else,for,while,with,try,except,finally,def,class
 autocmd FileType python setl tabstop=8 expandtab shiftwidth=4 softtabstop=4
 
-" --------------------------------------------------------------------
 " html
-" --------------------------------------------------------------------
 autocmd FileType html setl autoindent
 autocmd FileType html setl tabstop=8 expandtab shiftwidth=2 softtabstop=2
 
-" --------------------------------------------------------------------
 " css
-" --------------------------------------------------------------------
 autocmd FileType css setl autoindent
 autocmd FileType css setl tabstop=8 expandtab shiftwidth=2 softtabstop=2
 
-" --------------------------------------------------------------------
 " javascript
-" --------------------------------------------------------------------
 autocmd FileType javascript setl autoindent
 autocmd FileType javascript setl tabstop=8 expandtab shiftwidth=4 softtabstop=4
 
 
-" --------------------------------------------------------------------
-" ヘルプテキストの日本語化
-" --------------------------------------------------------------------
+" ---- ヘルプテキストの日本語化 ----
 set helplang=ja
+
+"---------------------------
+" Start Neobundle Settings.
+"---------------------------
+set runtimepath+=~/.vim/bundle/neobundle.vim/
+
+" Required:
+call neobundle#begin(expand('~/.vim/bundle/'))
+
+" neobundle自体をneobundleで管理
+NeoBundleFetch 'Shougo/neobundle.vim'
+NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'grep.vim'
+NeoBundle "scrooloose/syntastic"
+NeoBundle "davidhalter/jedi-vim"
+
+call neobundle#end()
+
+" Required:
+filetype plugin indent on
+
+NeoBundleCheck
+
+"-------------------------
+" End Neobundle Settings.
+"-------------------------
+
+" jedi-vim のポップアップを非表示にする
+let g:jedi#popup_select_first = 0
+
+" 関数/メソッドの定義を非表示
+let g:jedi#show_call_signatures = 0
+
+" 自動で補完しない
+let g:jedi#auto_vim_configuration = 0
+
+let g:jedi#use_tabs_not_buffers = 0
+
+let g:jedi#popup_on_dot = 0
+
+let g:jedi#rename_command = "<leader>??????"
+
+" 定型文挿入
+:inoreabbrev pyheader #!/usr/local/bin/python<CR># -*- coding: utf-8 -*-
+
+" iTerm上でマウスのスクロールを可能に
+set mouse=a
+set ttymouse=xterm2
+
+if has('kaoriya')
+    set transparency=20
+    set imdisable
+endif
+
+"以下は途中で断念
+"inoremap <C-u> <C-R>=InsertComment()<CR>
+"inoremap <C-y> <C-v><Tab><Esc>:call InsertTab()<CR>
+"inoremap <C-y> <C-v><Tab><C-R>=InsertComment()<CR>
+func! InsertComment()
+    let curnum = col('.')
+    echo curnum
+    if curnum < 79
+        "let curnum += 20
+        return ''
+    endif
+    return '# '
+endfunc
+
+func! InsertTab()
+    let curnum = col('.')
+    while curnum < 80
+        call setline('.', '&&&')
+        call substitute('&&&', 'ddddd')
+        let curnum += col('.')
+        echo curnum
+    endwhile
+    return ''
+endfunc
