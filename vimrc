@@ -209,6 +209,7 @@ NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'grep.vim'
 NeoBundle "scrooloose/syntastic"
 NeoBundle "davidhalter/jedi-vim"
+NeoBundle "thinca/vim-quickrun"
 
 call neobundle#end()
 
@@ -272,3 +273,10 @@ func! InsertTab()
     endwhile
     return ''
 endfunc
+
+nmap <silent> <Esc><Esc> :nohlsearch<CR>
+inoremap jj <Esc>
+set t_vb=
+set novisualbell
+nnoremap j gj
+nnoremap k gk
