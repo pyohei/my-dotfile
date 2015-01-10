@@ -1,12 +1,7 @@
-" ***********************************************************************
 " Vi 非互換モード
-" ***********************************************************************
 set nocompatible
 
-
-" ***********************************************************************
-" 基本設定
-" -----------------------------------------------------------------------
+" - 基本設定 ----------------------------------------------------------
 "   fileencoding                    encoding設定
 "   number                          行番号
 "   laststatus                      ステータス行を常に表示
@@ -48,9 +43,7 @@ set formatoptions=q
 set tw=0
 
 
-" **********************************************************************
-" 補完機能
-" ----------------------------------------------------------------------
+" - 補完機能 -----------------------------------------------------------
 "   wildmenu                        補完候補の表示
 "   wildmode                        補完モード
 "   completeopt                     自動補完機能
@@ -139,11 +132,6 @@ augroup highlightDoubleByteSpace
   autocmd VimEnter,WinEnter * match DoubleByteSpace /　/
 augroup END
 
-
-" 何に使っているか不明
-"execute pathogen#infect()
-
-" ********************************************************************
 " ファイル別設定
 " --------------------------------------------------------------------
 "   filetype on                     ファイル形式別設定
@@ -170,38 +158,15 @@ set runtimepath+=~/.vim/
 "    SyntasticCheck
 "endfunction
 
-
-" ---- ファイル別設定 ------
-
-" python
-autocmd FileType python setl autoindent
-autocmd FileType python setlocal smartindent cinwords=
-    \if,elif,else,for,while,with,try,except,finally,def,class
-autocmd FileType python setl tabstop=8 expandtab shiftwidth=4 softtabstop=4
-
-" html
-autocmd FileType html setl autoindent
-autocmd FileType html setl tabstop=8 expandtab shiftwidth=2 softtabstop=2
-
-" css
-autocmd FileType css setl autoindent
-autocmd FileType css setl tabstop=8 expandtab shiftwidth=2 softtabstop=2
-
-" javascript
-autocmd FileType javascript setl autoindent
-autocmd FileType javascript setl tabstop=8 expandtab shiftwidth=4 softtabstop=4
-
-
 " ---- ヘルプテキストの日本語化 ----
 set helplang=ja
 
-"---------------------------
-" Start Neobundle Settings.
-"---------------------------
-set runtimepath+=~/.vim/bundle/neobundle.vim/
-
-" Required:
-call neobundle#begin(expand('~/.vim/bundle/'))
+" -- Neobundle Settings --
+filetype off
+if has('vim_starting')
+    set runtimepath+=~/.vim/bundle/neobundle.vim/
+    call neobundle#begin(expand('~/.vim/bundle/'))
+endif
 
 " neobundle自体をneobundleで管理
 NeoBundleFetch 'Shougo/neobundle.vim'
@@ -221,20 +186,14 @@ NeoBundleCheck
 "-------------------------
 " End Neobundle Settings.
 "-------------------------
-
 " jedi-vim のポップアップを非表示にする
 let g:jedi#popup_select_first = 0
-
 " 関数/メソッドの定義を非表示
 let g:jedi#show_call_signatures = 0
-
 " 自動で補完しない
 let g:jedi#auto_vim_configuration = 0
-
 let g:jedi#use_tabs_not_buffers = 0
-
 let g:jedi#popup_on_dot = 0
-
 let g:jedi#rename_command = "<leader>??????"
 
 " 定型文挿入
@@ -245,8 +204,14 @@ set mouse=a
 set ttymouse=xterm2
 
 if has('kaoriya')
-    set transparency=20
-    set imdisable
+    if has('unix')
+        set transparency=20
+        set imdisable
+    elseif has('win32')
+        autocmd GUIEnter * set transparency=220
+        set guioptions-=m   " hide menu
+        set guioptions-=T   " hede tool
+    endif
 endif
 
 "以下は途中で断念
@@ -280,3 +245,4 @@ set t_vb=
 set novisualbell
 nnoremap j gj
 nnoremap k gk
+
