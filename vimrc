@@ -1,3 +1,4 @@
+scriptencoding utf-8
 " - 基本設定 ----------------------------------------------------------
 "   fileencoding                    encoding設定
 "   number                          行番号
@@ -13,15 +14,14 @@
 "   ruler                           コマンドが何行目にあるかを表示
 "   formatoptions                   自動整形方法
 "   tw                              改行位置
-" ----------------------------------------------------------------------
-" 未使用
+" - 未使用 ---
 "   nobackup                        バックアップファイルの作成をしない
 "   browsedir                       ファイルの検索方法設定
 "   whichwrap
 "   showmode
 "   showmodeline
-"   mouse=a
 " ---------------------------------------------------------------------
+set encoding=utf-8
 set fileencoding=utf-8
 set number
 set laststatus=2
@@ -38,66 +38,59 @@ set ruler
 set backupdir=~/.backup
 set formatoptions=q
 set tw=0
-
+set t_vb=
+set novisualbell
 
 " - 補完機能 -----------------------------------------------------------
 "   wildmenu                        補完候補の表示
 "   wildmode                        補完モード
 "   completeopt                     自動補完機能
-"   --------------------------------------------------------------------
-"   for...                          文字列をリストに変換
-"   exec...                         挿入モード時に補完開始
-" **********************************************************************
 set wildmenu
 set wildmode=list:full              " 全ての候補を網羅、最初を補完
 set completeopt=menuone
-for k in split("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_",'\zs')
-  exec "imap " . k . " " . k . "<C-N><C-P>"
+" 補完リスト表示
+for k in split(
+        \"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_",
+        \'\zs')
+    exec "imap " . k . " " . k . "<C-N><C-P>"
 endfor
 imap <expr> <TAB> pumvisible() ? "\<Down>" : "\<Tab>"
 
 
-" **********************************************************************
-" カレントウインドウ表示
-" **********************************************************************
+" ---- カレントウインドウ表示 ----
 augroup cch
   autocmd! cch
-  autocmd WinLeave * set nocursorline
-  "autocmd WinLeave * set nocursorcolumn
-  autocmd WinEnter,BufRead * set cursorline
-  "autocmd WinEnter,BufRead * set cursorcolumn
+  autocmd CursorMoved,CursorMovedI,WinLeave * setlocal nocursorline
+  autocmd CursorHold,CursorHoldI * setlocal cursorline
+  autocmd CursorMoved,CursorMovedI,WinLeave * setlocal nocursorcolumn
+  autocmd CursorHold,CursorHoldI * setlocal cursorcolumn
 augroup END
 
 
-" **********************************************************************
-" 検索機能
-" ----------------------------------------------------------------------
+" - 検索機能 -
 "   wrapkscan                        現在カーソル位置から検索開始
 "   incsearch                       検索をsuggest
-" **********************************************************************
 set wrapscan
 set incsearch
 
-
-" **********************************************************************
-" 不可視文字の設定
-" ----------------------------------------------------------------------
+" - 不可視文字設定 -
 "   list                            Listモード
 "   listchars                       不可視文字の表示
-" ----------------------------------------------------------------------
 set list
 set listchars=tab:^^,extends:»,precedes:«,nbsp:%
 
+" クリップボードにもコピー
+set clipboard+=unnamed
+" ambiguous文字を1バイトで表示
+set ambiwidth=single
 
-" ----------------------------------------------------------------------
-" 保存時に行末の空白除去
-" ----------------------------------------------------------------------
-autocmd BufWritePre * :%s/\s\+$//e
+" - 保存時に行末の空白除去 -
+augroup splitspace
+    autocmd!
+    autocmd BufWritePre * :%s/\s\+$//e
+augroup END
 
-
-" **********************************************************************
-" 拡張子未指定のタブ設定
-" --------------------------------------------------------------------
+" - 基本タブ設定 -
 "   tabstop                         <Tab>文字の空白数
 "   autoindent                      改行時に同じ量のインデントに
 "   smartindent                     高度なインデント
@@ -106,56 +99,26 @@ autocmd BufWritePre * :%s/\s\+$//e
 "   softtabstop                     <Tab>押下時の空白量
 "   noexpandtab(noet)               expandtabの逆
 "   * expandtab設定時にタブを挿入する方法...Ctrl-v + <Tab>
-" *********************************************************************
-set tabstop=4                           " おそらく会社では8
+set tabstop=4
 set shiftwidth=4
 set autoindent
 set smartindent
 set expandtab
-set softtabstop=4                       " 会社では8
+set softtabstop=4
 
-
-" *********************************************************************
 " 全角スペース挿入時の操作
-" ********************************************************************
-scriptencoding utf-8
+"  (見直しの余地あり)
 augroup highlightDoubleByteSpace
   autocmd!
-  " 全角スペースのハイライト指定
-  " --メモ--
-  "  cterm  underline or reverse
+  "cterm  underline or reverse
   "autocmd VimEnter,Colorscheme * highlight DoubleByteSpace cterm=underline ctermfg=darkgrey gui=underline guifg=darkgrey
   autocmd VimEnter,Colorscheme * highlight DoubleByteSpace cterm=underline ctermfg=darkgrey gui=reverse guifg=blue
   autocmd VimEnter,WinEnter * match DoubleByteSpace /　/
 augroup END
 
-" ファイル別設定
-" --------------------------------------------------------------------
-"   filetype on                     ファイル形式別設定
-"   filetype plugin on              ファイル別プラグインオン
-"   syntax on                       文法チェエクオン
-"   runtimepath                     分割した設定ファイルを読み込む
-"---------------------------------------------------------------------
-filetype on
-filetype plugin on
-syntax on
 set runtimepath+=~/.vim/
-" 特定のフォルダ下のロードファイルを読み込む
-" runtime! userautoload/*.vim
 
-"let g:syntastic_enable_signs=1
-"let g:syntastic_auto_loc_list=2
-"let g:syntastic_mode_map = {'mode': 'passive'}
-"augroup AutoSyntastic
-"    autocmd!
-"    autocmd InsertLeave,TextChanged * call s:syntastic()
-"augroup END
-"function! s:syntastic()
-"    w
-"    SyntasticCheck
-"endfunction
-
-" ---- ヘルプテキストの日本語化 ----
+" - ヘルプテキストの日本語化 -
 set helplang=ja
 
 " -- Neobundle Settings --
@@ -165,8 +128,7 @@ if has('vim_starting')
     call neobundle#begin(expand('~/.vim/bundle/'))
 endif
 
-" neobundle自体をneobundleで管理
-NeoBundleFetch 'Shougo/neobundle.vim'
+NeoBundleFetch 'Shougo/neobundle.vim' " neobundle自体をneobundleで管理
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'grep.vim'
 NeoBundle "scrooloose/syntastic"
@@ -175,23 +137,28 @@ NeoBundle "thinca/vim-quickrun"
 
 call neobundle#end()
 
-" Required:
-filetype plugin indent on
-
 NeoBundleCheck
 
-"-------------------------
-" End Neobundle Settings.
-"-------------------------
-" jedi-vim のポップアップを非表示にする
+" - jedi-vim -
+" ポップアップ非表示
 let g:jedi#popup_select_first = 0
-" 関数/メソッドの定義を非表示
+" 関数/メソッド定義非表示
 let g:jedi#show_call_signatures = 0
-" 自動で補完しない
+" 自動補完しない
 let g:jedi#auto_vim_configuration = 0
 let g:jedi#use_tabs_not_buffers = 0
 let g:jedi#popup_on_dot = 0
 let g:jedi#rename_command = "<leader>??????"
+
+" - NERDTree -
+let NERDTreeIgnore=['\.pyc$']
+
+" filetype on                     ファイル形式別設定
+" filetype plugin on              ファイル別プラグインオン
+" syntax on                       文法チェエクオン
+filetype on
+filetype plugin on
+syntax on
 
 " 定型文挿入
 :inoreabbrev pyheader #!/usr/local/bin/python<CR># -*- coding: utf-8 -*-
@@ -236,10 +203,8 @@ func! InsertTab()
     return ''
 endfunc
 
-nmap <silent> <Esc><Esc> :nohlsearch<CR>
+" - キー割り当て -
+nnoremap <silent> <Esc><Esc> :nohlsearch<CR>
 inoremap jj <Esc>
-set t_vb=
-set novisualbell
 nnoremap j gj
 nnoremap k gk
-
