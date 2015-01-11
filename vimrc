@@ -1,6 +1,3 @@
-" Vi 非互換モード
-set nocompatible
-
 " - 基本設定 ----------------------------------------------------------
 "   fileencoding                    encoding設定
 "   number                          行番号
