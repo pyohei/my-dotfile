@@ -9,3 +9,6 @@ set tabstop=8
 set expandtab
 set shiftwidth=4
 set softtabstop=4
+
+" Header
+:inoreabbrev pyheader #!/usr/local/bin/python<CR># -*- coding: utf-8 -*-<CR>
