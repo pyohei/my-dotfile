@@ -102,14 +102,15 @@ endif
 
 NeoBundleFetch 'Shougo/neobundle.vim' " manage NeoBundle with NeoBundle
 NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'grep.vim'
 NeoBundle 'scrooloose/syntastic'
-NeoBundle 'davidhalter/jedi-vim'
+NeoBundle 'grep.vim'
+NeoBundle 'surround.vim'
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'Shougo/unite.vim'
+NeoBundle 'davidhalter/jedi-vim'
+NeoBundle 'open-browser.vim'
 
 call neobundle#end()
-
 NeoBundleCheck
 
 " - jedi-vim -
@@ -146,3 +147,8 @@ nnoremap [unite] <Nop>
 nmap     <Space>u [unite]
 nnoremap <silent> [unite]b :<C-u>Unite buffer<CR>
 nnoremap <silent> [unite]f :<C-u>Unite file<CR>
+
+" Opne browser setting
+let g:netrw_nogx = 1
+nmap gx <Plug>(openbrowser-smart-search)
+vmap gx <Plug>(openbrowser-smart-search)
