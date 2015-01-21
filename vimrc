@@ -26,6 +26,8 @@ set t_vb=
 set novisualbell
 set ambiwidth=single
 set clipboard+=unnamed
+set history=2000
+colorscheme desert
 
 " no buckup
 set nobackup
@@ -141,6 +143,8 @@ nnoremap <silent> <Esc><Esc> :nohlsearch<CR>
 inoremap jj <Esc>
 nnoremap j gj
 nnoremap k gk
+nnoremap <Space>j 0
+nnoremap <Space>l $
 
 " Key mapping in Unite.vim
 nnoremap [unite] <Nop>
@@ -152,3 +156,6 @@ nnoremap <silent> [unite]f :<C-u>Unite file<CR>
 let g:netrw_nogx = 1
 nmap gx <Plug>(openbrowser-smart-search)
 vmap gx <Plug>(openbrowser-smart-search)
+
+nnoremap ZZ <Nop>
+nnoremap ZQ <Nop>
