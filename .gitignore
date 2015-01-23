@@ -1,0 +1,7 @@
+*.swp
+*.diff
+.~lock.*
+*.lock
+vim/bundle/*
+.DS_Store
+memo
