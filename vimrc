@@ -35,7 +35,7 @@ set noswapfile
 
 " complete setting
 set wildmenu
-set wildmode=list
+set wildmode=list,full
 set completeopt=menuone
 
 " Display complete list automatically
@@ -167,4 +167,3 @@ function! Vimcopy()
 endfunction
 nnoremap <C-T><C-P> :call Vimcopy()<CR>
 nnoremap <C-T>v :source ~/.vimrc
-inoremap zz <Esc>
