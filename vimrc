@@ -159,3 +159,12 @@ vmap gx <Plug>(openbrowser-smart-search)
 
 nnoremap ZZ <Nop>
 nnoremap ZQ <Nop>
+
+" Developnemt tool
+function! Vimcopy()
+    let l:filepath = expand('<sfile>:p:h') . '/distribute.sh'
+    let l:result = system("sh ". shellescape(filepath))
+endfunction
+nnoremap <C-T><C-P> :call Vimcopy()<CR>
+nnoremap <C-T>v :source ~/.vimrc
+inoremap zz <Esc>
