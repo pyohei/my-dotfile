@@ -167,3 +167,7 @@ function! Vimcopy()
 endfunction
 nnoremap <C-T><C-P> :call Vimcopy()<CR>
 nnoremap <C-T>v :source ~/.vimrc
+
+" Insert Time
+nmap <C-T><C-D> <Esc>i<C-r>=strftime("%Y%m%d")<CR><CR>
+nmap <C-T><C-T> <Esc>i<C-r>=strftime("%Y%m%d%H%M%S")<CR><CR>
