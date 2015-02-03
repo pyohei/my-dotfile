@@ -111,6 +111,7 @@ NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'davidhalter/jedi-vim'
 NeoBundle 'open-browser.vim'
+NeoBundle 'tpope/vim-fugitive'
 
 call neobundle#end()
 NeoBundleCheck
@@ -161,6 +162,7 @@ nnoremap ZZ <Nop>
 nnoremap ZQ <Nop>
 
 " Developnemt tool
+" need check if windows(add)
 function! Vimcopy()
     let l:filepath = expand('<sfile>:p:h') . '/distribute.sh'
     let l:result = system("sh ". shellescape(filepath))
