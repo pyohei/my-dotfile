@@ -109,6 +109,7 @@ NeoBundle 'grep.vim'
 NeoBundle 'surround.vim'
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/vimfiler.vim'
 NeoBundle 'davidhalter/jedi-vim'
 NeoBundle 'open-browser.vim'
 NeoBundle 'tpope/vim-fugitive'
@@ -152,6 +153,8 @@ nnoremap [unite] <Nop>
 nmap     <Space>u [unite]
 nnoremap <silent> [unite]b :<C-u>Unite buffer<CR>
 nnoremap <silent> [unite]f :<C-u>Unite file<CR>
+nnoremap <silent> [unite]d :<C-u>Unite directory<CR>
+nnoremap <silent> [unite]t :<C-u>Unite tab<CR>
 
 " Opne browser setting
 let g:netrw_nogx = 1
@@ -162,10 +165,12 @@ nnoremap ZZ <Nop>
 nnoremap ZQ <Nop>
 
 " Developnemt tool
-" need check if windows(add)
 function! Vimcopy()
-    let l:filepath = expand('<sfile>:p:h') . '/distribute.sh'
-    let l:result = system("sh ". shellescape(filepath))
+    if !has('win32')
+        let l:filepath = expand('<sfile>:p:h') . '/distribute.sh'
+        let l:result = system("sh ". shellescape(filepath))
+        echo 'COPY!'
+    endif
 endfunction
 nnoremap <C-T><C-P> :call Vimcopy()<CR>
 nnoremap <C-T>v :source ~/.vimrc<CR>
@@ -177,3 +182,4 @@ nmap <C-T><C-T> <Esc>i<C-r>=strftime("%Y%m%d%H%M%S")<CR><CR>
 " set directory
 let g:fj = '~/Programing/dev/www/figurejudge'
 nnoremap <C-M><C-D> :exe 'cd ' . finddir(fj)<CR><CR>
+
