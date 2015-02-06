@@ -156,6 +156,10 @@ nnoremap <silent> [unite]f :<C-u>Unite file<CR>
 nnoremap <silent> [unite]d :<C-u>Unite directory<CR>
 nnoremap <silent> [unite]t :<C-u>Unite tab<CR>
 
+" Key mapping in vimfiler.vim
+nnoremap F :VimFiler<CR>
+nnoremap Fe :VimFilerExplore<CR>
+
 " Opne browser setting
 let g:netrw_nogx = 1
 nmap gx <Plug>(openbrowser-smart-search)
