@@ -27,6 +27,7 @@ set novisualbell
 set ambiwidth=single
 set clipboard+=unnamed
 set history=2000
+set cmdheight=2
 colorscheme desert
 
 " no buckup
@@ -55,6 +56,7 @@ if has('kaoriya')
         set guioptions-=m   " hide menu
         set guioptions-=T   " hede tool
         set encoding=cp932
+        source $VIM/plugins/kaoriya/encode_japan.vim
     endif
 endif
 
