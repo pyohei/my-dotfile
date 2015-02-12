@@ -149,6 +149,7 @@ nnoremap j gj
 nnoremap k gk
 nnoremap <Space>j 0
 nnoremap <Space>l $
+nnoremap q: :q<CR>
 
 " Key mapping in Unite.vim
 nnoremap [unite] <Nop>
@@ -189,3 +190,22 @@ nmap <C-T><C-T> <Esc>i<C-r>=strftime("%Y%m%d%H%M%S")<CR><CR>
 let g:fj = '~/Programing/dev/www/figurejudge'
 nnoremap <C-M><C-D> :exe 'cd ' . finddir(fj)<CR><CR>
 
+" window control
+let g:window_num = 1
+function! Wide_window()
+    let g:window_num += 1
+    let l:column_base = 80
+    let l:column_size = l:column_base * g:window_num
+    vs
+    let &l:columns = l:column_size
+endfunction
+nmap <C-T><C-V> :call Wide_window()<CR><C-w>=
+function! Tiny_window()
+    let g:window_num -= 1
+    let l:column_base = 80
+    let l:column_size = l:column_base * g:window_num
+    w
+    bd
+    let &l:columns = l:column_size
+endfunction
+nmap <C-T><C-N> :call Tiny_window()<CR><C-w>=
