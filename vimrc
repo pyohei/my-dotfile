@@ -209,3 +209,9 @@ function! Tiny_window()
     let &l:columns = l:column_size
 endfunction
 nmap <C-T><C-N> :call Tiny_window()<CR><C-w>=
+
+" move current dir
+function! MoveCurrentDir()
+    lcd %:p:h
+endfunction
+nnoremap <C-D>c :call MoveCurrentDir()<CR>
