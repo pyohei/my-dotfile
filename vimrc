@@ -217,13 +217,14 @@ endfunction
 nnoremap <C-D>c :call MoveCurrentDir()<CR>
 
 " Open python import file
-let g:python_path = '/Users/mukaishohei/Programing/dev/www/figurejudge'
+let g:python_paths = '/Users/mukaishohei/Programing/dev/www/figurejudge'
 let g:current_file_dir = ''
 function! GetCurLine()
     let l:line_num = line('.')
     let l:cur_string = getline(l:line_num)
     let l:line_len = strlen(l:cur_string)
     let l:last_string = l:cur_string[l:line_len-1]
+    let l:forms = []
     if l:last_string == '\'
         let l:next_string = getline(l:line_num +1)
         let l:imp_string = l:cur_string[:l:line_len-2] . l:next_string
@@ -249,6 +250,27 @@ function! GetCurLine()
         echo 'no file'
         return
     endif
+
+    let l:python_path = expand('%:h')
+    if len(l:forms) > 0
+        for l:e in l:froms
+            let l:org_path = l:python_path
+            let l:python_path = l:python_path . '/' . l:e
+            if !isdirectory(l:python_path)
+                let l:py_file = l:python_path . '.py'
+                if filereadable(l:py_file)
+                    exe 'e ' . findfile(l:py_file)
+                    return
+                endif
+            endif
+        endfor
+    endif
+    let l:py_file = l:python_path . '/' . l:dict['import'] . '.py'
+    if filereadable(l:py_file)
+        exe 'e ' . findfile(l:py_file)
+        return
+    endif
+
     let l:python_path = g:python_path
     for l:e in l:froms
         let l:org_path = l:python_path
