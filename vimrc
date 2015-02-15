@@ -294,3 +294,12 @@ function! GetCurLine()
     endif
 endfunction
 nnoremap <C-T><C-R> :call GetCurLine()<CR>
+
+" Company
+let g:is_company = 0
+if g:is_company == 1
+    inoremap <S-Tab> <C-V><Tab>
+    set colorcolumn=80
+    noremap <C-J> <ESC>
+    inoremap <C-J> <ESC>
+endif
