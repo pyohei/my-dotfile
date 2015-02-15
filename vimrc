@@ -217,7 +217,7 @@ endfunction
 nnoremap <C-D>c :call MoveCurrentDir()<CR>
 
 " Open python import file
-let g:python_paths = '/Users/mukaishohei/Programing/dev/www/figurejudge'
+let g:python_path = '/Users/mukaishohei/Programing/dev/www/figurejudge'
 let g:current_file_dir = ''
 function! GetCurLine()
     let l:line_num = line('.')
