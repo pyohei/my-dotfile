@@ -154,14 +154,19 @@ nnoremap q: :q<CR>
 " Key mapping in Unite.vim
 nnoremap [unite] <Nop>
 nmap     <Space>u [unite]
-nnoremap <silent> [unite]b :<C-u>Unite buffer<CR>
-nnoremap <silent> [unite]f :<C-u>Unite file<CR>
-nnoremap <silent> [unite]d :<C-u>Unite directory<CR>
-nnoremap <silent> [unite]t :<C-u>Unite tab<CR>
+nnoremap <silent> [unite]b :Unite buffer<CR>
+nnoremap <silent> [unite]f :Unite file<CR>
+nnoremap <silent> [unite]d :Unite directory<CR>
+nnoremap <silent> [unite]t :Unite tab<CR>
+nnoremap <silent> [unite]l :Unite bookmark<CR>
+nnoremap <silent> [unite]a :UniteBookmarkAdd<CR>
+nnoremap <silent> [unite]c :UniteWithBufferDir -buffer-name=files file<CR>
 
 " Key mapping in vimfiler.vim
-nnoremap F :VimFiler<CR>
-nnoremap Fe :VimFilerExplore<CR>
+nnoremap [filer] <Nop>
+nmap     <Space>f [filer]
+nnoremap <silent> [filer]f :VimFiler<CR>
+nnoremap <silent> [filer]e :VimFilerExplore<CR>
 
 " Opne browser setting
 let g:netrw_nogx = 1
