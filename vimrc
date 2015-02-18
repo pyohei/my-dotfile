@@ -115,6 +115,7 @@ NeoBundle 'Shougo/vimfiler.vim'
 NeoBundle 'davidhalter/jedi-vim'
 NeoBundle 'open-browser.vim'
 NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'altercation/vim-colors-solarized'
 
 call neobundle#end()
 NeoBundleCheck
@@ -308,3 +309,8 @@ if g:is_company == 1
     noremap <C-J> <ESC>
     inoremap <C-J> <ESC>
 endif
+
+" color
+syntax enable
+set background=dark
+colorscheme solarized
