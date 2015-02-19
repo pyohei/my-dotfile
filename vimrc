@@ -105,34 +105,18 @@ if has('vim_starting')
 endif
 
 NeoBundleFetch 'Shougo/neobundle.vim' " manage NeoBundle with NeoBundle
-NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'grep.vim'
 NeoBundle 'surround.vim'
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimfiler.vim'
-NeoBundle 'davidhalter/jedi-vim'
 NeoBundle 'open-browser.vim'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'altercation/vim-colors-solarized'
 
 call neobundle#end()
 NeoBundleCheck
-
-" - jedi-vim -
-" ポップアップ非表示
-let g:jedi#popup_select_first = 0
-" 関数/メソッド定義非表示
-let g:jedi#show_call_signatures = 0
-" 自動補完しない
-let g:jedi#auto_vim_configuration = 0
-let g:jedi#use_tabs_not_buffers = 0
-let g:jedi#popup_on_dot = 0
-let g:jedi#rename_command = "<leader>??????"
-
-" - NERDTree -
-let NERDTreeIgnore=['\.pyc$']
 
 " file setting
 filetype on
@@ -168,6 +152,7 @@ nnoremap [filer] <Nop>
 nmap     <Space>f [filer]
 nnoremap <silent> [filer]f :VimFiler<CR>
 nnoremap <silent> [filer]e :VimFilerExplore<CR>
+let g:vimfiler_enable_auto_cd = 1
 
 " Opne browser setting
 let g:netrw_nogx = 1
@@ -312,5 +297,5 @@ endif
 
 " color
 syntax enable
-set background=dark
 colorscheme solarized
+set background=dark
