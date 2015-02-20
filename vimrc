@@ -114,6 +114,9 @@ NeoBundle 'Shougo/vimfiler.vim'
 NeoBundle 'open-browser.vim'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'thinca/vim-ref'
+NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'Shougo/neosnippet'
 
 call neobundle#end()
 NeoBundleCheck
@@ -158,6 +161,10 @@ let g:vimfiler_enable_auto_cd = 1
 let g:netrw_nogx = 1
 nmap gx <Plug>(openbrowser-smart-search)
 vmap gx <Plug>(openbrowser-smart-search)
+
+" NeoCompleteCache
+let g:neocomplcache_enable_at_startup = 1
+NeoComplCacheEnable
 
 nnoremap ZZ <Nop>
 nnoremap ZQ <Nop>
