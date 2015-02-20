@@ -295,7 +295,3 @@ if g:is_company == 1
     inoremap <C-J> <ESC>
 endif
 
-" color
-syntax enable
-colorscheme solarized
-set background=dark
