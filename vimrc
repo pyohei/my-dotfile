@@ -117,6 +117,7 @@ NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'thinca/vim-ref'
 NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/neosnippet'
+NeoBundle 'kannokanno/unite-todo'
 
 call neobundle#end()
 NeoBundleCheck
@@ -164,7 +165,7 @@ vmap gx <Plug>(openbrowser-smart-search)
 
 " NeoCompleteCache
 let g:neocomplcache_enable_at_startup = 1
-NeoComplCacheEnable
+"NeoComplCacheEnable
 
 nnoremap ZZ <Nop>
 nnoremap ZQ <Nop>
