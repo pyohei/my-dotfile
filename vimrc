@@ -158,6 +158,12 @@ nnoremap <silent> [filer]f :VimFiler<CR>
 nnoremap <silent> [filer]e :VimFilerExplore<CR>
 let g:vimfiler_enable_auto_cd = 1
 
+" unite todo keymap
+nnoremap [todo] <Nop>
+nmap     <Space>t [todo]
+nnoremap <silent> [todo]a :UniteTodoAddSimple<CR>
+nnoremap <silent> [todo]l :Unite todo<CR>
+
 " Opne browser setting
 let g:netrw_nogx = 1
 nmap gx <Plug>(openbrowser-smart-search)
