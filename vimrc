@@ -227,11 +227,14 @@ let g:current_file_dir = ''
 function! GetCurLine()
     let l:line_num = line('.')
     let l:cur_string = getline(l:line_num)
+    let l:cur_string = substitute(l:cur_string, '\t', ' ', 'g')
+    let l:cur_string =
     let l:line_len = strlen(l:cur_string)
     let l:last_string = l:cur_string[l:line_len-1]
     let l:forms = []
     if l:last_string == '\'
         let l:next_string = getline(l:line_num +1)
+        let l:next_string = substitute(l:next_string, '\t', ' ', 'g')
         let l:imp_string = l:cur_string[:l:line_len-2] . l:next_string
     else
         let l:imp_string = l:cur_string
