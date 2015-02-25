@@ -117,7 +117,9 @@ NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'thinca/vim-ref'
 NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/neosnippet'
+NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'kannokanno/unite-todo'
+NeoBundle 'mattn/webapi-vim'
 
 call neobundle#end()
 NeoBundleCheck
@@ -312,3 +314,13 @@ if g:is_company == 1
     inoremap <C-J> <ESC>
 endif
 
+function! GetHipChat()
+    let l:result = webapi#http#get($HIPCHAT)
+    "echo l:result.content
+    let l:contents = webapi#json#decode(result.content)
+    echo l:contents
+endfunction
+
+noremap <C-T><C-H> :call GetHipChat()<CR>
+"source でconfigファイルを読み込むようにする!!
+"
