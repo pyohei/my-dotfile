@@ -2,6 +2,11 @@ scriptencoding utf-8
 
 " ==== Vim ===== "
 
+" read configuration
+if filereadable(expand('~/.vimrc.cnf'))
+    source ~/.vimrc.cnf
+endif
+
 " encoding
 set encoding=utf-8
 set fileencoding=utf-8
@@ -315,10 +320,15 @@ if g:is_company == 1
 endif
 
 function! GetHipChat()
-    let l:result = webapi#http#get($HIPCHAT)
+    let l:result = webapi#http#get(g:HIPCHAT)
     "echo l:result.content
     let l:contents = webapi#json#decode(result.content)
-    echo l:contents
+    let l:items = l:contents.items
+    for l:item in l:items
+        echo l:item.date
+        echo l:item.message
+        echo '--------------------------------------'
+    endfor
 endfunction
 
 noremap <C-T><C-H> :call GetHipChat()<CR>
