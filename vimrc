@@ -321,7 +321,6 @@ endif
 
 function! GetHipChat()
     let l:result = webapi#http#get(g:HIPCHAT)
-    "echo l:result.content
     let l:contents = webapi#json#decode(result.content)
     let l:items = l:contents.items
     for l:item in l:items
@@ -334,3 +333,17 @@ endfunction
 noremap <C-T><C-H> :call GetHipChat()<CR>
 "source でconfigファイルを読み込むようにする!!
 "
+
+function! GetWeather()
+    let l:result = webapi#http#get(
+        \ 'http://weather.livedoor.com/forecast/webservice/json/v1?city=270000')
+    let l:contents = webapi#json#decode(result.content)
+    echo l:contents
+    finish
+    let l:file_name = '~/weather.txt'
+    execute 'redir >> ' . l:file_name
+    silent! echon l:contents
+    redir END
+endfunction
+
+nnoremap <C-T><C-W> :call GetWeather()<CR>
