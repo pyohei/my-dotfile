@@ -230,85 +230,6 @@ nnoremap <C-D>c :call MoveCurrentDir()<CR>
 
 " Open python import file
 let g:python_path = '/Users/mukaishohei/Programing/dev/www/figurejudge'
-let g:current_file_dir = ''
-function! GetCurLine()
-    let l:line_num = line('.')
-    let l:cur_string = getline(l:line_num)
-    let l:cur_string = substitute(l:cur_string, '\t', ' ', 'g')
-    let l:cur_string =
-    let l:line_len = strlen(l:cur_string)
-    let l:last_string = l:cur_string[l:line_len-1]
-    let l:forms = []
-    if l:last_string == '\'
-        let l:next_string = getline(l:line_num +1)
-        let l:next_string = substitute(l:next_string, '\t', ' ', 'g')
-        let l:imp_string = l:cur_string[:l:line_len-2] . l:next_string
-    else
-        let l:imp_string = l:cur_string
-    endif
-    let l:imp_list = split(l:imp_string, ' ')
-    let l:dict = {}
-    let l:num = 0
-    for l:e in l:imp_list
-        if l:e == 'from'
-            let l:dict['from'] = l:imp_list[l:num +1]
-        endif
-        if l:e == 'import'
-            let l:dict['import'] = l:imp_list[l:num +1]
-        endif
-        let l:num += 1
-    endfor
-    if has_key(l:dict, 'from')
-        let l:froms = split(l:dict['from'], '\.')
-    endif
-    if !has_key(l:dict, 'import')
-        echo 'no file'
-        return
-    endif
-
-    let l:python_path = expand('%:h')
-    if len(l:forms) > 0
-        for l:e in l:froms
-            let l:org_path = l:python_path
-            let l:python_path = l:python_path . '/' . l:e
-            if !isdirectory(l:python_path)
-                let l:py_file = l:python_path . '.py'
-                if filereadable(l:py_file)
-                    exe 'e ' . findfile(l:py_file)
-                    return
-                endif
-            endif
-        endfor
-    endif
-    let l:py_file = l:python_path . '/' . l:dict['import'] . '.py'
-    if filereadable(l:py_file)
-        exe 'e ' . findfile(l:py_file)
-        return
-    endif
-
-    let l:python_path = g:python_path
-    for l:e in l:froms
-        let l:org_path = l:python_path
-        let l:python_path = l:python_path . '/' . l:e
-        if !isdirectory(l:python_path)
-            let l:py_file = l:python_path . '.py'
-            if filereadable(l:py_file)
-                exe 'e ' . findfile(l:py_file)
-            else
-                echo 'no file'
-            endif
-            return
-        endif
-    endfor
-    let l:py_file = l:python_path . '/' . l:dict['import'] . '.py'
-    echo l:py_file
-    if filereadable(l:py_file)
-        exe 'e ' . findfile(l:py_file)
-    else
-        echo 'no file'
-    endif
-endfunction
-nnoremap <C-T><C-R> :call GetCurLine()<CR>
 
 " Company
 let g:is_company = 0
@@ -347,3 +268,7 @@ function! GetWeather()
 endfunction
 
 nnoremap <C-T><C-W> :call GetWeather()<CR>
+
+" vim development
+set runtimepath+=~/Programing/dev/tool/vim-pyimporter/
+nnoremap <C-T><C-O> :call GetPyFile()<CR>
