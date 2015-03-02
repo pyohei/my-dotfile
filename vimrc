@@ -228,9 +228,6 @@ function! MoveCurrentDir()
 endfunction
 nnoremap <C-D>c :call MoveCurrentDir()<CR>
 
-" Open python import file
-let g:python_path = '/Users/mukaishohei/Programing/dev/www/figurejudge'
-
 " Company
 let g:is_company = 0
 if g:is_company == 1
@@ -252,8 +249,6 @@ function! GetHipChat()
 endfunction
 
 noremap <C-T><C-H> :call GetHipChat()<CR>
-"source でconfigファイルを読み込むようにする!!
-"
 
 function! GetWeather()
     let l:result = webapi#http#get(
@@ -271,4 +266,5 @@ nnoremap <C-T><C-W> :call GetWeather()<CR>
 
 " vim development
 set runtimepath+=~/Programing/dev/tool/vim-pyimporter/
+let g:python_path = '/Users/mukaishohei/Programing/dev/www/figurejudge'
 nnoremap <C-T><C-O> :call GetPyFile()<CR>
