@@ -7,6 +7,11 @@ if filereadable(expand('~/.vimrc.cnf'))
     source ~/.vimrc.cnf
 endif
 
+" runtimepath setting
+for s:runpath in g:runtimepaths
+    echo s:runpath
+endfor
+
 " encoding
 set encoding=utf-8
 set fileencoding=utf-8
@@ -199,8 +204,9 @@ nmap <C-T><C-D> <Esc>i<C-r>=strftime("%Y%m%d")<CR><CR>
 nmap <C-T><C-T> <Esc>i<C-r>=strftime("%Y%m%d%H%M%S")<CR><CR>
 
 " set directory
-let g:fj = '~/Programing/dev/www/figurejudge'
-nnoremap <C-M><C-D> :exe 'cd ' . finddir(fj)<CR><CR>
+if exists('g:fj')
+    nnoremap <C-M><C-D> :exe 'cd ' . finddir(fj)<CR><CR>
+endif
 
 " window control
 let g:window_num = 1
@@ -262,9 +268,10 @@ function! GetWeather()
     redir END
 endfunction
 
+" call weather report
 nnoremap <C-T><C-W> :call GetWeather()<CR>
 
 " vim development
-set runtimepath+=~/Programing/dev/tool/vim-pyimporter/
-let g:python_path = '/Users/mukaishohei/Programing/dev/www/figurejudge'
-nnoremap <C-T><C-O> :call GetPyFile()<CR>
+if exists('g:python_path')
+    nnoremap <C-T><C-O> :call GetPyFile()<CR>
+endif
