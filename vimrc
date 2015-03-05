@@ -7,11 +7,6 @@ if filereadable(expand('~/.vimrc.cnf'))
     source ~/.vimrc.cnf
 endif
 
-" runtimepath setting
-for s:runpath in g:runtimepaths
-    echo s:runpath
-endfor
-
 " encoding
 set encoding=utf-8
 set fileencoding=utf-8
