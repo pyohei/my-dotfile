@@ -270,3 +270,7 @@ nnoremap <C-T><C-W> :call GetWeather()<CR>
 if exists('g:python_path')
     nnoremap <C-T><C-O> :call GetPyFile()<CR>
 endif
+
+" Test
+set laststatus=2
+set statusline=%F%m%r%h%w\%=[TYPE=%Y]\[FORMAT=%{&ff}]\[ENC=%{&fileencoding}]\[LOW=%l/%L]
