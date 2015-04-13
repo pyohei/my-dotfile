@@ -176,8 +176,7 @@ nnoremap <silent> [todo]l :Unite todo<CR>
 " pyimporter(my Plugin)
 nnoremap [pyimporter] <Nop>
 nmap     <Space>p [pyimporter]
-"nnoremap <silent> [pyimporter]i :PyImport()
-nnoremap <silent> [pyimporter]i :call PyImport()<CR>
+nnoremap <silent> [pyimporter]i :PyImport
 
 " Opne browser setting
 let g:netrw_nogx = 1
