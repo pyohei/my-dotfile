@@ -125,6 +125,8 @@ NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'kannokanno/unite-todo'
 NeoBundle 'mattn/webapi-vim'
+NeoBundle 'fatih/vim-go'
+NeoBundle 'pyohei/vim-pyimporter'
 
 call neobundle#end()
 NeoBundleCheck
@@ -170,6 +172,12 @@ nnoremap [todo] <Nop>
 nmap     <Space>t [todo]
 nnoremap <silent> [todo]a :UniteTodoAddSimple<CR>
 nnoremap <silent> [todo]l :Unite todo<CR>
+
+" pyimporter(my Plugin)
+nnoremap [pyimporter] <Nop>
+nmap     <Space>p [pyimporter]
+"nnoremap <silent> [pyimporter]i :PyImport()
+nnoremap <silent> [pyimporter]i :call PyImport()<CR>
 
 " Opne browser setting
 let g:netrw_nogx = 1
@@ -274,3 +282,8 @@ endif
 " Test
 set laststatus=2
 set statusline=%F%m%r%h%w\%=[TYPE=%Y]\[FORMAT=%{&ff}]\[ENC=%{&fileencoding}]\[LOW=%l/%L]
+
+" go settings
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
