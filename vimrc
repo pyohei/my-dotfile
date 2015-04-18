@@ -1,6 +1,7 @@
 scriptencoding utf-8
 
 " ==== Vim ===== "
+let g:loaded_vimrc = 0
 
 " read configuration
 if filereadable(expand('~/.vimrc.cnf'))
@@ -94,6 +95,30 @@ set autoindent
 set smartindent
 set expandtab
 set softtabstop=4
+
+" load development setting
+augroup vimrc-local
+    autocmd!
+    autocmd BufNewFile, BufReadPost * call s:vimrc_local(
+        \ expand('<afile>:p:h'))
+augroup END
+
+function! s:vimrc_local(loc)
+    let files = findfile('plugin-import.vim', escape(a:loc, ' ') . ';', -1)
+    for i in reverse(filter(files, 'filereadable(v:val)'))
+        source `=i`
+    endfor
+endfunction
+
+" This is for confirm of function s:vimrc_local
+function! DevTest()
+    let dirdir = expand('<afile>:p:h')
+    call s:vimrc_local(expand('<afile>:p:h'))
+endfunction
+
+if g:loaded_vimrc == 0
+    call s:vimrc_local(getcwd())
+endif
 
 " Double Space highlight
 augroup highlightDoubleByteSpace
@@ -472,3 +497,6 @@ function! IsNeocomplete()
     echo isneo
     return isneo
 endfunction
+
+" set loaded
+let g:loaded_vimrc = 1
