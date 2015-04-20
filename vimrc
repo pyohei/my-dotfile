@@ -164,6 +164,7 @@ NeoBundle 'kannokanno/unite-todo'
 NeoBundle 'mattn/webapi-vim'
 NeoBundle 'fatih/vim-go'
 NeoBundle 'pyohei/vim-pyimporter'
+NeoBundle 'nanotech/jellybeans.vim'
 
 call neobundle#end()
 NeoBundleCheck
@@ -500,3 +501,6 @@ endfunction
 
 " set loaded
 let g:loaded_vimrc = 1
+
+" reload gvimrc
+source ~/.gvimrc
