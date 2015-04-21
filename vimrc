@@ -58,7 +58,7 @@ if has('kaoriya')
     if has('unix')
         set transparency=20
         set imdisable
-    elseif has('win32')
+    elseif has('win32') || has("gui")
         autocmd GUIEnter * set transparency=220
         set guioptions-=m   " hide menu
         set guioptions-=T   " hede tool
@@ -503,4 +503,6 @@ endfunction
 let g:loaded_vimrc = 1
 
 " reload gvimrc
-source ~/.gvimrc
+if has("gui")
+    source ~/.gvimrc
+endif
