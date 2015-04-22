@@ -230,13 +230,20 @@ nnoremap ZQ <Nop>
 
 " Developnemt tool
 function! Vimcopy()
-    if !has('win32')
-        let l:filepath = expand('<sfile>:p:h') . '/distribute.sh'
-        let l:result = system("sh ". shellescape(filepath))
-        echo 'COPY!'
+    if has('win32')
+        echo 'Your machine is unsupported'
+        return
     endif
+    let l:filename = expand('%')
+    if l:filename !=# 'vimrc' && l:filename !=# 'gvimrc'
+        echo 'Your file is not vim setting file'
+        return
+    endif
+    let l:filepath = expand('%:p')
+    execute 'silent !cp ' l:filepath . ' ~/.' . l:filename
+    echo 'Copy Your' l:filename . '.'
 endfunction
-nnoremap <C-T><C-P> :call Vimcopy()<CR>
+nnoremap <silent> <C-T><C-P> :call Vimcopy()<CR>
 nnoremap <C-T>v :source ~/.vimrc<CR>
 
 " Insert Time
@@ -404,7 +411,6 @@ else
     let g:neocomplcache_enable_at_startup = 1
     let g:neocomplcache_enable_smart_case = 1
     let g:neocomplcache_min_syntax_length = 3
-    let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
     let g:neocomplcache_dictionary_filetype_lists = {
         \ 'default' : '',
         \ 'vimshell' : $HOME.'/.vimshell_hist',
@@ -419,8 +425,6 @@ else
     inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
     function! s:my_cr_function()
       return neocomplcache#smart_close_popup() . "\<CR>"
-      " For no inserting <CR> key.
-      "return pumvisible() ? neocomplcache#close_popup() : "\<CR>"
     endfunction
     " <TAB>: completion.
     inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
@@ -437,12 +441,6 @@ else
 
     " AutoComplPop like behavior.
     "let g:neocomplcache_enable_auto_select = 1
-
-    " Shell like behavior(not recommended).
-    "set completeopt+=longest
-    "let g:neocomplcache_enable_auto_select = 1
-    "let g:neocomplcache_disable_auto_complete = 1
-    "inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
 
     " Enable omni completion.
     autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
