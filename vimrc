@@ -83,10 +83,12 @@ set list
 set listchars=tab:^^,extends:»,precedes:«,nbsp:%
 
 " Delete space in end line (change in windows)
-augroup splitspace
-    autocmd!
-    autocmd BufWritePre * :%s/\s\+$//e
-augroup END
+if exists('g:is_company')
+    augroup splitspace
+        autocmd!
+        autocmd BufWritePre * :%s/\s\+$//e
+    augroup END
+endif
 
 " tab setting
 set tabstop=4
@@ -282,8 +284,7 @@ endfunction
 nnoremap <C-D>c :call MoveCurrentDir()<CR>
 
 " Company
-let g:is_company = 0
-if g:is_company == 1
+if exists('g:is_company')
     inoremap <S-Tab> <C-V><Tab>
     set colorcolumn=80
     noremap <C-J> <ESC>
@@ -369,7 +370,6 @@ if s:isNeocomplete()
 
     inoremap <expr><C-g>     neocomplete#undo_completion()
     inoremap <expr><C-l>     neocomplete#complete_common_string()
-    " Recommended key-mappings.
     inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
     function! s:my_cr_function()
       return neocomplete#close_popup() . "\<CR>"
@@ -379,16 +379,8 @@ if s:isNeocomplete()
     inoremap <expr><BS>   neocomplete#smart_close_popup()."\<C-h>"
     inoremap <expr><C-y>  neocomplete#close_popup()
     inoremap <expr><C-e>  neocomplete#cancel_popup()
+    let g:neocomplete#enable_auto_select = 1
 
-    " Or set this.
-    "let g:neocomplete#enable_cursor_hold_i = 1
-    " Or set this.
-    "let g:neocomplete#enable_insert_char_pre = 1
-
-    " AutoComplPop like behavior.
-    "let g:neocomplete#enable_auto_select = 1
-
-    " Enable omni completion.
     autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
     autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
     autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
@@ -433,14 +425,7 @@ else
     inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
     inoremap <expr><C-y>  neocomplcache#close_popup()
     inoremap <expr><C-e>  neocomplcache#cancel_popup()
-
-    " Or set this.
-    "let g:neocomplcache_enable_cursor_hold_i = 1
-    " Or set this.
-    "let g:neocomplcache_enable_insert_char_pre = 1
-
-    " AutoComplPop like behavior.
-    "let g:neocomplcache_enable_auto_select = 1
+    let g:neocomplcache_enable_auto_select = 1
 
     " Enable omni completion.
     autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
