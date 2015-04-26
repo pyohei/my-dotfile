@@ -45,8 +45,9 @@ set wildmenu
 set wildmode=list,full
 set completeopt=menuone
 
-"" Display complete list automatically
+" Display complete list automatically
 " This method has completion
+" Commet out because conflicte with neocomplete
 "let g:com_list = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_"
 "for k in split(com_list, '\zs')
 "    exec "imap " . k . " " . k . "<C-N><C-P>"
@@ -223,10 +224,6 @@ let g:netrw_nogx = 1
 nmap gx <Plug>(openbrowser-smart-search)
 vmap gx <Plug>(openbrowser-smart-search)
 
-" NeoCompleteCache
-let g:neocomplcache_enable_at_startup = 1
-"NeoComplCacheEnable
-
 nnoremap ZZ <Nop>
 nnoremap ZQ <Nop>
 
@@ -257,67 +254,15 @@ if exists('g:fj')
     nnoremap <C-M><C-D> :exe 'cd ' . finddir(fj)<CR><CR>
 endif
 
-" window control
-let g:window_num = 1
-function! Wide_window()
-    let g:window_num += 1
-    let l:column_base = 80
-    let l:column_size = l:column_base * g:window_num
-    vs
-    let &l:columns = l:column_size
-endfunction
-nmap <C-T><C-V> :call Wide_window()<CR><C-w>=
-function! Tiny_window()
-    let g:window_num -= 1
-    let l:column_base = 80
-    let l:column_size = l:column_base * g:window_num
-    w
-    bd
-    let &l:columns = l:column_size
-endfunction
-nmap <C-T><C-N> :call Tiny_window()<CR><C-w>=
-
 " move current dir
-function! MoveCurrentDir()
-    lcd %:p:h
-endfunction
-nnoremap <C-D>c :call MoveCurrentDir()<CR>
+nnoremap <C-D>c :lcd %:p:h
 
-" Company
 if exists('g:is_company')
     inoremap <S-Tab> <C-V><Tab>
     set colorcolumn=80
     noremap <C-J> <ESC>
     inoremap <C-J> <ESC>
 endif
-
-function! GetHipChat()
-    let l:result = webapi#http#get(g:HIPCHAT)
-    let l:contents = webapi#json#decode(result.content)
-    let l:items = l:contents.items
-    for l:item in l:items
-        echo l:item.date
-        echo l:item.message
-        echo '--------------------------------------'
-    endfor
-endfunction
-
-noremap <C-T><C-H> :call GetHipChat()<CR>
-
-function! GetWeather()
-    let l:result = webapi#http#get(
-        \ 'http://weather.livedoor.com/forecast/webservice/json/v1?city=270000')
-    let l:contents = webapi#json#decode(result.content)
-    echo l:contents
-    finish
-    let l:file_name = '~/weather.txt'
-    execute 'redir >> ' . l:file_name
-    silent! echon l:contents
-    redir END
-endfunction
-
-" call weather report
-nnoremap <C-T><C-W> :call GetWeather()<CR>
 
 " vim development
 if exists('g:python_path')
@@ -326,7 +271,8 @@ endif
 
 " Test
 set laststatus=2
-set statusline=%F%m%r%h%w\%=[TYPE=%Y]\[FORMAT=%{&ff}]\[ENC=%{&fileencoding}]\[LOW=%l/%L]
+set statusline=%F%m%r%h%w\%=
+    \[TYPE=%Y]\[FORMAT=%{&ff}]\[ENC=%{&fileencoding}]\[LOW=%l/%L]
 
 " go settings
 let g:go_highlight_functions = 1
@@ -391,13 +337,6 @@ if s:isNeocomplete()
     if !exists('g:neocomplete#sources#omni#input_patterns')
       let g:neocomplete#sources#omni#input_patterns = {}
     endif
-    "let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-    "let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-    "let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-
-    " For perlomni.vim setting.
-    " https://github.com/c9s/perlomni.vim
-    let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 else
     let g:acp_enableAtStartup = 0
     let g:neocomplcache_enable_at_startup = 1
@@ -420,7 +359,6 @@ else
     endfunction
     " <TAB>: completion.
     inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-    " <C-h>, <BS>: close popup and delete backword char.
     inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
     inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
     inoremap <expr><C-y>  neocomplcache#close_popup()
@@ -438,13 +376,6 @@ else
     if !exists('g:neocomplcache_force_omni_patterns')
       let g:neocomplcache_force_omni_patterns = {}
     endif
-    let g:neocomplcache_force_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-    let g:neocomplcache_force_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-    let g:neocomplcache_force_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-
-    " For perlomni.vim setting.
-    " https://github.com/c9s/perlomni.vim
-    let g:neocomplcache_force_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 endif
 
 " confirm wheather NeoCompleteCache
@@ -462,3 +393,55 @@ let g:loaded_vimrc = 1
 if has("gui")
     source ~/.gvimrc
 endif
+
+" =====================================================
+" Someday make plugin
+" =====================================================
+
+" Get Weather Infomation with Vim
+function! GetWeather()
+    let l:result = webapi#http#get(
+        \ 'http://weather.livedoor.com/forecast/webservice/json/v1?city=270000')
+    let l:contents = webapi#json#decode(result.content)
+    echo l:contents
+    finish
+    let l:file_name = '~/weather.txt'
+    execute 'redir >> ' . l:file_name
+    silent! echon l:contents
+    redir END
+endfunction
+nnoremap <C-T><C-W> :call GetWeather()<CR>
+
+" Get Hip Chat Message with Vim
+function! GetHipChat()
+    let l:result = webapi#http#get(g:HIPCHAT)
+    let l:contents = webapi#json#decode(result.content)
+    let l:items = l:contents.items
+    for l:item in l:items
+        echo l:item.date
+        echo l:item.message
+        echo '--------------------------------------'
+    endfor
+endfunction
+noremap <C-T><C-H> :call GetHipChat()<CR>
+
+" Control window size.
+let g:window_num = 1
+function! Wide_window()
+    let g:window_num += 1
+    let l:column_base = 80
+    let l:column_size = l:column_base * g:window_num
+    vs
+    let &l:columns = l:column_size
+endfunction
+nmap <C-T><C-V> :call Wide_window()<CR><C-w>=
+function! Tiny_window()
+    let g:window_num -= 1
+    let l:column_base = 80
+    let l:column_size = l:column_base * g:window_num
+    w
+    bd
+    let &l:columns = l:column_size
+endfunction
+nmap <C-T><C-N> :call Tiny_window()<CR><C-w>=
+
