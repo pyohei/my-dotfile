@@ -314,6 +314,7 @@ if s:isNeocomplete()
     endif
     let g:neocomplete#keyword_patterns['default'] = '\h\w*'
 
+    " If you complete first candidate, you should <C-y>!
     inoremap <expr><C-g>     neocomplete#undo_completion()
     inoremap <expr><C-l>     neocomplete#complete_common_string()
     inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
