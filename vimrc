@@ -39,6 +39,7 @@ colorscheme desert
 " no buckup
 set nobackup
 set noswapfile
+set noundofile
 
 " complete setting
 set wildmenu
