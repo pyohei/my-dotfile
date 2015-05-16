@@ -447,3 +447,6 @@ function! Tiny_window()
 endfunction
 nmap <C-T><C-N> :call Tiny_window()<CR><C-w>=
 
+" For g:neocomplete
+set rtp += $GOROOT/misc/vim
+exe "set rtp+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
