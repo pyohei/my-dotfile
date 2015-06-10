@@ -169,9 +169,13 @@ NeoBundle 'mattn/webapi-vim'
 NeoBundle 'fatih/vim-go'
 NeoBundle 'pyohei/vim-pyimporter'
 NeoBundle 'nanotech/jellybeans.vim'
+NeoBundle 'fatih/vim-go'
 
 call neobundle#end()
 NeoBundleCheck
+
+" golang settings
+set runtimepath+=$GOROOT/misc/vim
 
 " file setting
 filetype on
@@ -414,19 +418,6 @@ function! GetWeather()
 endfunction
 nnoremap <C-T><C-W> :call GetWeather()<CR>
 
-" Get Hip Chat Message with Vim
-function! GetHipChat()
-    let l:result = webapi#http#get(g:HIPCHAT)
-    let l:contents = webapi#json#decode(result.content)
-    let l:items = l:contents.items
-    for l:item in l:items
-        echo l:item.date
-        echo l:item.message
-        echo '--------------------------------------'
-    endfor
-endfunction
-noremap <C-T><C-H> :call GetHipChat()<CR>
-
 " Control window size.
 let g:window_num = 1
 function! Wide_window()
@@ -448,5 +439,6 @@ endfunction
 nmap <C-T><C-N> :call Tiny_window()<CR><C-w>=
 
 " For g:neocomplete
-set rtp += $GOROOT/misc/vim
+autocmd FileType go autocmd BufWritePre <buffer> Fmt
 exe "set rtp+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
+set completeopt=menu,preview
