@@ -46,15 +46,6 @@ set wildmenu
 set wildmode=list,full
 set completeopt=menuone
 
-" Display complete list automatically
-" This method has completion
-" Commet out because conflicte with neocomplete
-"let g:com_list = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_"
-"for k in split(com_list, '\zs')
-"    exec "imap " . k . " " . k . "<C-N><C-P>"
-"endfor
-"inoremap <expr> <TAB> pumvisible() ? "\<Down>" : "\<Tab>"
-
 " setting by OS
 if has('kaoriya')
     if has('unix')
@@ -100,7 +91,7 @@ set smartindent
 set expandtab
 set softtabstop=4
 
-" load development setting
+" ---- Load development setting ----
 augroup vimrc-local
     autocmd!
     autocmd BufNewFile, BufReadPost * call s:vimrc_local(
@@ -259,7 +250,7 @@ if exists('g:fj')
     nnoremap <C-M><C-D> :exe 'cd ' . finddir(fj)<CR><CR>
 endif
 
-" move current dir
+" Move current dir
 nnoremap <C-D>c :lcd %:p:h
 
 if exists('g:is_company')
