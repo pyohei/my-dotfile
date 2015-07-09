@@ -159,6 +159,8 @@ NeoBundle 'kannokanno/unite-todo'
 NeoBundle 'mattn/webapi-vim'
 NeoBundle 'fatih/vim-go'
 NeoBundle 'pyohei/vim-pyimporter'
+NeoBundle 'pyohei/vim-hipchat'
+NeoBundle 'pyohei/vim-bunshin'
 NeoBundle 'nanotech/jellybeans.vim'
 NeoBundle 'fatih/vim-go'
 
