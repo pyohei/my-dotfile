@@ -8,9 +8,12 @@ if filereadable(expand('~/.vimrc.cnf'))
     source ~/.vimrc.cnf
 endif
 
-" encoding
+" *** Encoding ***
 set encoding=utf-8
 set fileencoding=utf-8
+set fileencodings=utf-8,cp932,euc-jp,sjis,iso-2022-jp
+au BufReadPost * if search('\S', 'w') == 0 | 
+    \ set fileencoding=utf-8 | endif
 
 " basic setting (not distributing)
 set runtimepath+=~/.vim/
