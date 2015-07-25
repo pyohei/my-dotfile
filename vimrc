@@ -108,7 +108,7 @@ function! s:vimrc_local(loc)
     endfor
 endfunction
 
-" This is for confirm of function s:vimrc_local
+" This is for confirm of function s:vimrc_loal
 function! DevTest()
     let dirdir = expand('<afile>:p:h')
     call s:vimrc_local(expand('<afile>:p:h'))
@@ -396,12 +396,23 @@ if has("gui")
     source ~/.gvimrc
 endif
 
+vmap X y/<C-r>"<CR>
+xnoremap * :<C-u>call <SID>VSetSearch()<CR>/<C-R>=@/<CR><CR>
+xnoremap # :<C-u>call <SID>VSetSearch()<CR>?<C-R>=@/<CR><CR>
+
+function! s:VSetSearch()
+    let l:temp = @s
+    norm! gv"sy
+    let @/ = '\V' . substitute(escape(@s, '/\'), '\n', '\\n', 'g')
+    let @s = l:temp
+endfunction
+
 " =====================================================
 " Someday make plugin
 " =====================================================
 
 " Get Weather Infomation with Vim
-function! GetWeather()
+function! GetWather()
     let l:result = webapi#http#get(
         \ 'http://weather.livedoor.com/forecast/webservice/json/v1?city=270000')
     let l:contents = webapi#json#decode(result.content)
