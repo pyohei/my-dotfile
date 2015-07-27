@@ -182,6 +182,9 @@ syntax on
 set mouse=a
 set ttymouse=xterm2
 
+" python syntax check
+let g:syntastic_python_checkers = ['pyflakes', 'pep8']
+
 " Key mapping
 nnoremap <silent> <Esc><Esc> :nohlsearch<CR>
 inoremap jj <Esc>
