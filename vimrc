@@ -166,6 +166,7 @@ NeoBundle 'pyohei/vim-hipchat'
 NeoBundle 'pyohei/vim-bunshin'
 NeoBundle 'nanotech/jellybeans.vim'
 NeoBundle 'fatih/vim-go'
+NeoBundle 'vim-scripts/Align'
 
 call neobundle#end()
 NeoBundleCheck
@@ -432,3 +433,19 @@ nnoremap <C-T><C-W> :call GetWeather()<CR>
 autocmd FileType go autocmd BufWritePre <buffer> Fmt
 exe "set rtp+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
 set completeopt=menu,preview
+
+" python docstring viewer
+function! Pydocdoc()
+    let l:cur_file = expand('%:t')
+    let l:cur_dir = getcwd()
+python << EOF
+import vim
+import_dir = vim.eval('l:cur_dir')
+import sys
+sys.path.append(import_dir)
+import_file = vim.eval('l:cur_file')
+import_mod = import_file.replace('.py', '')
+exec "import {0} as docstring_help_module".format(import_mod)
+help(docstring_help_module)
+EOF
+endfunction
