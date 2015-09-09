@@ -1,0 +1,11 @@
+" vim-hipchat settings
+let g:HIPCHAT_DOMAIN = 'hipdomain'
+let g:HIPCHAT_TOKEN = 'hiptoken'
+
+" vim-pyimporter settings
+let g:python_paths = ['/home/hoge', '/home/piyo']
+let g:py_projects = {
+    \'myproject': ['/home/bar'],
+    \'yourproject': ['/home/foo']
+    \}
+
