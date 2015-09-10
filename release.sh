@@ -15,6 +15,7 @@ CUR_DIR=$(cd $(dirname $0);pwd)
 NOW=`date +"%Y%m%d%H%M%S"`
 
 
+echo "Start --->>>"
 # --- Create backup directory ---
 if [ ! -d ${VIM_BACKUP_DIR} ]; then
     mkdir -p ${VIM_BACKUP_DIR}
@@ -27,6 +28,7 @@ backup() {
     if [ -e ${ORG_FILE} ]; then
         cp ${ORG_FILE} ${BACKUP_FILE}
     fi
+    echo ">>> backup .$1 to ${BACKUP_FILE} >>>"
 }
 
 backup vimrc
@@ -38,7 +40,15 @@ renew() {
     CUR_FILE=${CUR_DIR}/$1
     NEW_FILE=${VIM_BASE_DIR}/.$1
     cp ${CUR_FILE} ${NEW_FILE} 
+    echo ">>> Renew .$1 >>>"
 }
 
 renew vimrc
 renew gvimrc
+
+read -p 'Reset cnf file?[Y]: ' ANSWER
+if [ "$ANSWER" = "Y" ]; then
+    renew vimrc.cnf
+fi
+
+echo ">>>--- Finish"
