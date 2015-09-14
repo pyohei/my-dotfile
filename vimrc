@@ -140,6 +140,13 @@ if has('vim_starting')
 endif
 
 NeoBundleFetch 'Shougo/neobundle.vim'
+
+" Windows settings (in setting command path myselr)
+if !executable(g:neobundle#types#git#command_path)
+  echo 'thorough'
+  source ~/.vimrc.command
+endif
+
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'grep.vim'
 NeoBundle 'surround.vim'
@@ -396,7 +403,7 @@ endfunction
 let g:loaded_vimrc = 1
 
 " reload gvimrc
-if has("gui")
+if has("gui") && has("win32")
     source ~/.gvimrc
 endif
 
