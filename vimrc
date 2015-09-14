@@ -76,7 +76,7 @@ set incsearch
 
 " unvisible string
 set list
-set listchars=tab:^^,extends:»,precedes:«,nbsp:%
+set listchars=tab:^^,extends:>,precedes:<,nbsp:%
 
 " Delete space in end line (change in windows)
 if exists('g:is_company')
