@@ -143,7 +143,6 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 
 " Windows settings (in setting command path myselr)
 if !executable(g:neobundle#types#git#command_path)
-  echo 'thorough'
   source ~/.vimrc.command
 endif
 
@@ -403,7 +402,7 @@ endfunction
 let g:loaded_vimrc = 1
 
 " reload gvimrc
-if has("gui") && has("win32")
+if has("gui") && !has("win32")
     source ~/.gvimrc
 endif
 
