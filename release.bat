@@ -43,7 +43,10 @@ rem Copy gvimrc.
 copy %CUR_DIR%gvimrc %HOME_DIR%\_gvimrc
 
 rem Copy vimrc command list (if you need).
-copy %CUR_DIR%vimrc.command %HOME_DIR%\.vimrc.command
+set /P IS_COPY="Copy command default? [Y]: "
+if "%IS_COPY%"=="Y" (
+  copy %CUR_DIR%vimrc.command %HOME_DIR%\.vimrc.command
+)
 
 rem Copy vimrc.cnf(need confirm).
 set /P IS_COPY="Copy cnf? [Y]: "
