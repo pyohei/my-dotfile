@@ -11,6 +11,7 @@ _I allow your use my vim settings though I don't make for other use._
 git clone https://github.com/pyohei/vim-setting.github
 cd vim-setting
 ./release.sh
+# You edit ~/.vimrc.cnf for your environment.
 ```
 
 ### Windows
@@ -18,12 +19,12 @@ cd vim-setting
 git clone https://github.com/pyohei/vim-setting.github
 cd vim-setting
 release.bat
+# You edit ~/.vimrc.cnf for your environment.
 ```
 
-## Other
+## OTHER
 I'm beginner of vim. If possible, please advice my vim settings and script.
 
 
-##Licence
-* MIT
-  * see [LICENSE](https://github.com/pyohei/vim-setting/blob/master/LICENSE)
+##LICENSE
+* [MIT](https://github.com/pyohei/vim-setting/blob/master/LICENSE)
