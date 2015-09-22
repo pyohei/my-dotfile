@@ -1,3 +1,11 @@
+" ----------------------------------------------------------------------
+" Release vims setting script.
+"
+" Version: 0.0.0
+" Author: Shohei Mukai
+" Licence: MIT Licence
+" ----------------------------------------------------------------------
+
 scriptencoding utf-8
 
 " ==== Vim ===== "
