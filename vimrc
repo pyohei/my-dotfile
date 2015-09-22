@@ -429,20 +429,6 @@ endfunction
 " Someday make plugin
 " =====================================================
 
-" Get Weather Infomation with Vim
-function! GetWather()
-    let l:result = webapi#http#get(
-        \ 'http://weather.livedoor.com/forecast/webservice/json/v1?city=270000')
-    let l:contents = webapi#json#decode(result.content)
-    echo l:contents
-    finish
-    let l:file_name = '~/weather.txt'
-    execute 'redir >> ' . l:file_name
-    silent! echon l:contents
-    redir END
-endfunction
-nnoremap <C-T><C-W> :call GetWeather()<CR>
-
 " For g:neocomplete
 autocmd FileType go autocmd BufWritePre <buffer> Fmt
 exe "set rtp+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
