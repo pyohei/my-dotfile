@@ -16,19 +16,19 @@ elseif
 endif
 let g:loaded_vimrc = 0
 
-" read configuration
+" Read configuration
 if filereadable(expand('~/.vimrc.cnf'))
     source ~/.vimrc.cnf
 endif
 
-" *** Encoding ***
+" Basic Encoding
 set encoding=utf-8
 set fileencoding=utf-8
 set fileencodings=utf-8,cp932,euc-jp,sjis,iso-2022-jp
 au BufReadPost * if search('\S', 'w') == 0 | 
     \ set fileencoding=utf-8 | endif
 
-" basic setting (not distributing)
+" Basic
 set runtimepath+=~/.vim/
 set helplang=ja
 set number
@@ -50,18 +50,32 @@ set ambiwidth=single
 set clipboard+=unnamed
 set history=2000
 set cmdheight=2
+set tabstop=4
+set shiftwidth=4
+set autoindent
+set smartindent
+set expandtab
+set softtabstop=4
 
-" no buckup
+" Buckup
 set nobackup
 set noswapfile
 set noundofile
 
-" complete setting
+" Complete
 set wildmenu
 set wildmode=list,full
 set completeopt=menuone
 
-" setting by OS
+" Search
+set wrapscan
+set incsearch
+
+" Unvisible string
+set list
+set listchars=tab:^^,extends:>,precedes:<,nbsp:%
+
+" Gui window
 if has('kaoriya')
     if has('unix')
         set transparency=20
@@ -82,15 +96,16 @@ augroup cch
   autocmd CursorHold,CursorHoldI * setlocal cursorline
 augroup END
 
-" searcing
-set wrapscan
-set incsearch
-
-" unvisible string
-set list
-set listchars=tab:^^,extends:>,precedes:<,nbsp:%
+" Double Space highlight
+augroup highlightDoubleByteSpace
+  autocmd!
+  autocmd VimEnter,Colorscheme * highlight DoubleByteSpace cterm=underline
+    \ ctermfg=Green gui=reverse guifg=Green
+  autocmd VimEnter,WinEnter * match DoubleByteSpace /　/
+augroup END
 
 " Delete space in end line (change in windows)
+" *NEED TO CHANGE by file*
 if exists('g:is_company')
     augroup splitspace
         autocmd!
@@ -98,15 +113,9 @@ if exists('g:is_company')
     augroup END
 endif
 
-" tab setting
-set tabstop=4
-set shiftwidth=4
-set autoindent
-set smartindent
-set expandtab
-set softtabstop=4
-
-" ---- Load development setting ----
+" *****************************************************************
+" Load development setting(This change to plugin?)
+" *****************************************************************
 augroup vimrc-local
     autocmd!
     autocmd BufNewFile, BufReadPost * call s:vimrc_local(
@@ -129,14 +138,8 @@ endfunction
 if g:loaded_vimrc == 0
     call s:vimrc_local(getcwd())
 endif
+" ****************************************************************
 
-" Double Space highlight
-augroup highlightDoubleByteSpace
-  autocmd!
-  autocmd VimEnter,Colorscheme * highlight DoubleByteSpace cterm=underline
-    \ ctermfg=Green gui=reverse guifg=Green
-  autocmd VimEnter,WinEnter * match DoubleByteSpace /　/
-augroup END
 
 " Check weather neocomplete or neocomplcache
 function! s:isNeocomplete()
@@ -188,7 +191,6 @@ NeoBundle 'vim-scripts/Align'
 
 call neobundle#end()
 NeoBundleCheck
-
 
 " file setting
 filetype on
