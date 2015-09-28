@@ -425,16 +425,16 @@ function! s:VSetSearch()
     let @s = l:temp
 endfunction
 
-" =====================================================
-" Someday make plugin
-" =====================================================
-
-" For g:neocomplete
+" ***** Golang settings *****
 autocmd FileType go autocmd BufWritePre <buffer> Fmt
 exe "set rtp+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
 set completeopt=menu,preview
 
-" python docstring viewer
+" =====================================================
+" Someday make plugin
+" =====================================================
+
+" ---- python docstring viewer ----
 function! Pydocdoc()
     let l:cur_file = expand('%:t')
     let l:cur_dir = getcwd()
