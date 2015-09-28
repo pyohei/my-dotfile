@@ -8,7 +8,12 @@
 
 scriptencoding utf-8
 
-" ==== Vim ===== "
+" Reload gvimrc (in developint mode)
+if g:loaded_vimrc == 1 && has("gui") && !has("win32")
+    source ~/.gvimrc
+elseif
+    colorscheme desert
+endif
 let g:loaded_vimrc = 0
 
 " read configuration
@@ -45,7 +50,6 @@ set ambiwidth=single
 set clipboard+=unnamed
 set history=2000
 set cmdheight=2
-colorscheme desert
 
 " no buckup
 set nobackup
@@ -401,11 +405,6 @@ endfunction
 
 " set loaded
 let g:loaded_vimrc = 1
-
-" reload gvimrc
-if has("gui") && !has("win32")
-    source ~/.gvimrc
-endif
 
 vmap X y/<C-r>"<CR>
 xnoremap * :<C-u>call <SID>VSetSearch()<CR>/<C-R>=@/<CR><CR>
