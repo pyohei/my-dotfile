@@ -9,9 +9,9 @@
 scriptencoding utf-8
 
 " Reload gvimrc (in developint mode)
-if g:loaded_vimrc == 1 && has("gui") && !has("win32")
+if exists("g:loaded_vimrc") && g:loaded_vimrc == 1 && has("gui") && !has("win32")
     source ~/.gvimrc
-elseif
+elseif has("gui")
     colorscheme desert
 endif
 let g:loaded_vimrc = 0
