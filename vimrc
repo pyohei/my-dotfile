@@ -228,6 +228,7 @@ nnoremap <silent> [unite]c :UniteWithBufferDir -buffer-name=files file<CR>
 nnoremap [filer] <Nop>
 nmap     <Space>f [filer]
 nnoremap <silent> [filer]f :VimFiler<CR>
+nnoremap <silent> [filer]d :VimFilerCurrentDir<CR>
 nnoremap <silent> [filer]e :VimFilerExplore<CR>
 let g:vimfiler_enable_auto_cd = 1
 
