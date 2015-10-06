@@ -1,4 +1,4 @@
-# My Vim settings
+# Vim settings
 
 ## ABOUNT
 My Vim settings.
