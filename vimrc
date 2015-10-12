@@ -74,6 +74,11 @@ set incsearch
 set list
 set listchars=tab:^^,extends:>,precedes:<,nbsp:%
 
+" Status
+set laststatus=2
+set statusline=%F%m%r%h%w\%=
+    \[TYPE=%Y]\[FORMAT=%{&ff}]\[ENC=%{&fileencoding}]\[LOW=%l/%L]
+
 " Gui window
 if has('kaoriya')
     if has('unix')
@@ -136,6 +141,7 @@ endfunction
 
 if g:loaded_vimrc == 0
     call s:vimrc_local(getcwd())
+    let g:loaded_vimrc = 1
 endif
 " ****************************************************************
 
@@ -292,10 +298,6 @@ if exists('g:python_path')
     nnoremap <C-T><C-O> :call GetPyFile()<CR>
 endif
 
-" Test
-set laststatus=2
-set statusline=%F%m%r%h%w\%=
-    \[TYPE=%Y]\[FORMAT=%{&ff}]\[ENC=%{&fileencoding}]\[LOW=%l/%L]
 
 " neosnippet test
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
@@ -404,9 +406,6 @@ function! IsNeocomplete()
     echo isneo
     return isneo
 endfunction
-
-" set loaded
-let g:loaded_vimrc = 1
 
 vmap X y/<C-r>"<CR>
 xnoremap * :<C-u>call <SID>VSetSearch()<CR>/<C-R>=@/<CR><CR>
