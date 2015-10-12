@@ -14,7 +14,6 @@ if exists("g:loaded_vimrc") && g:loaded_vimrc == 1 && has("gui") && !has("win32"
 elseif has("gui")
     colorscheme desert
 endif
-let g:loaded_vimrc = 0
 
 " Read configuration
 if filereadable(expand('~/.vimrc.cnf'))
