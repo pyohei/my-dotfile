@@ -139,7 +139,7 @@ function! DevTest()
     call s:vimrc_local(expand('<afile>:p:h'))
 endfunction
 
-if g:loaded_vimrc == 0
+if !exists("g:loaded_vimrc")
     call s:vimrc_local(getcwd())
     let g:loaded_vimrc = 1
 endif
