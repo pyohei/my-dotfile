@@ -19,7 +19,7 @@ if filereadable(expand('~/.vimrc.cnf'))
     source ~/.vimrc.cnf
 endif
 
-" Basic Encoding
+" Encoding
 set encoding=utf-8
 set fileencoding=utf-8
 set fileencodings=utf-8,cp932,euc-jp,sjis,iso-2022-jp
@@ -106,15 +106,6 @@ augroup highlightDoubleByteSpace
     \ ctermfg=Green gui=reverse guifg=Green
   autocmd VimEnter,WinEnter * match DoubleByteSpace /　/
 augroup END
-
-" Delete space in end line (change in windows)
-" *NEED TO CHANGE by file*
-if exists('g:is_company')
-    augroup splitspace
-        autocmd!
-        autocmd BufWritePre * :%s/\s\+$//e
-    augroup END
-endif
 
 " *****************************************************************
 " Load development setting(This change to plugin?)
