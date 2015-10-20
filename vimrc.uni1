@@ -1,0 +1,13 @@
+" ----------------------------------------------------------------------
+" vimrc for unique setting 1
+"
+" Author: Shohei Mukai
+" Licence: MIT Licence
+" ----------------------------------------------------------------------
+"
+" Delete space in end line (change in windows)
+" *NEED TO CHANGE by file*
+augroup splitspace
+    autocmd!
+    autocmd BufWritePre * :%s/\s\+$//e
+augroup END
