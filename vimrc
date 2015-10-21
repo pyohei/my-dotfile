@@ -201,9 +201,9 @@ let g:syntastic_python_checkers = ['pyflakes', 'pep8']
 
 " Key mapping
 nnoremap <silent> <Esc><Esc> :nohlsearch<CR>
-inoremap jj <Esc>
-nnoremap j gj
-nnoremap k gk
+inoremap <silent> jj <Esc>
+nnoremap <silent> j gj
+nnoremap <silent> k gk
 nnoremap <Space>j 0
 nnoremap <Space>l $
 nnoremap q: :q<CR>
