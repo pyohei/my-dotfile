@@ -276,13 +276,6 @@ endif
 " Move current dir
 nnoremap <C-D>c :lcd %:p:h
 
-if exists('g:is_company')
-    inoremap <S-Tab> <C-V><Tab>
-    set colorcolumn=80
-    noremap <C-J> <ESC>
-    inoremap <C-J> <ESC>
-endif
-
 " vim development
 if exists('g:python_path')
     nnoremap <C-T><C-O> :call GetPyFile()<CR>
@@ -438,3 +431,9 @@ exec "import {0} as docstring_help_module".format(import_mod)
 help(docstring_help_module)
 EOF
 endfunction
+
+" Read each settings
+if filereadable(expand('~/.vimrc.uni1'))
+    source ~/.vimrc.uni1
+endif
+
