@@ -1,5 +1,5 @@
 " setting with gui_vim
-set lines=60
+set lines=68
 set columns=80
 
 " colorscheme solarized
