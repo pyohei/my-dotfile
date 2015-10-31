@@ -1,6 +1,9 @@
 " setting with gui_vim
-set lines=68
-set columns=80
+
+if !exists("g:loaded_vimrc")
+    set lines=68
+    set columns=80
+endif
 
 " colorscheme solarized
 " set background=dark
