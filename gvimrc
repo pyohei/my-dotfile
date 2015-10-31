@@ -1,4 +1,9 @@
-" setting with gui_vim
+" ----------------------------------------------------------------------
+" gimrc
+"
+" Author: Shohei Mukai
+" Licence: MIT Licence
+" ----------------------------------------------------------------------
 
 if !exists("g:loaded_vimrc")
     set lines=68
