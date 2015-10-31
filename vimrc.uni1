@@ -11,3 +11,11 @@ augroup splitspace
     autocmd!
     autocmd BufWritePre * :%s/\s\+$//e
 augroup END
+
+set tabstop=8
+inoremap <silent> <S-Tab> <C-v><Tab>
+
+let g:syntastic_python_checkers = []
+
+set encoding=cp932
+set fileencoding=cp932
