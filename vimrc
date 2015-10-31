@@ -1,5 +1,5 @@
 " ----------------------------------------------------------------------
-" vimrc 
+" vimrc
 "
 " Author: Shohei Mukai
 " Licence: MIT Licence
@@ -23,7 +23,7 @@ endif
 set encoding=utf-8
 set fileencoding=utf-8
 set fileencodings=utf-8,cp932,euc-jp,sjis,iso-2022-jp
-au BufReadPost * if search('\S', 'w') == 0 | 
+au BufReadPost * if search('\S', 'w') == 0 |
     \ set fileencoding=utf-8 | endif
 
 " Basic
@@ -432,8 +432,13 @@ help(docstring_help_module)
 EOF
 endfunction
 
-" Read each settings
-if filereadable(expand('~/.vimrc.uni1'))
-    source ~/.vimrc.uni1
-endif
+" Load unique config (Testing)
+function! LoadUniqueConfig()
+    if filereadable(expand('~/.vimrc.uni1'))
+        source ~/.vimrc.uni1
+    else
+        echo 'No config File!'
+    endif
+endfunction
+nnoremap <silent> <Space>mono :call LoadUniqueConfig()<CR>
 
