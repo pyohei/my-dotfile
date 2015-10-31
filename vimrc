@@ -54,6 +54,7 @@ set autoindent
 set smartindent
 set expandtab
 set softtabstop=4
+inoremap # X#
 
 " Buckup
 set nobackup
@@ -441,4 +442,3 @@ function! LoadUniqueConfig()
     endif
 endfunction
 nnoremap <silent> <Space>mono :call LoadUniqueConfig()<CR>
-
