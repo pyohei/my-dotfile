@@ -65,6 +65,8 @@ set noundofile
 set wildmenu
 set wildmode=list,full
 set completeopt=menuone
+set completeopt+=noinsert
+set completeopt+=noselect
 
 " Search
 set wrapscan
