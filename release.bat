@@ -27,20 +27,20 @@ if not exist %BACKUP_DIR% (
 )
 
 rem Backup vimrc script.
-if exist %HOME_DIR%\_vimrc (
-  copy %HOME_DIR%\_vimrc %HOME_DIR%\.vim-backup\_vimrc%NOW%
+if exist %HOME_DIR%\.vimrc (
+  copy %HOME_DIR%\.vimrc %HOME_DIR%\.vim-backup\.vimrc%NOW%
 )
 
 rem Backup gvimrc script.
-if exist %HOME_DIR%\_vimrc (
-  copy %HOME_DIR%\_gvimrc %HOME_DIR%\.vim-backup\_gvimrc%NOW%
+if exist %HOME_DIR%\.vimrc (
+  copy %HOME_DIR%\.gvimrc %HOME_DIR%\.vim-backup\.gvimrc%NOW%
 )
 
 rem Copy vimrc.
-copy %CUR_DIR%vimrc %HOME_DIR%\_vimrc
+copy %CUR_DIR%vimrc %HOME_DIR%\.vimrc
 
 rem Copy gvimrc.
-copy %CUR_DIR%gvimrc %HOME_DIR%\_gvimrc
+copy %CUR_DIR%gvimrc %HOME_DIR%\.gvimrc
 
 rem Copy vimrc command list (if you need).
 set /P IS_COPY="Copy command default? [Y]: "
