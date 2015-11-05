@@ -20,3 +20,15 @@ let g:syntastic_python_checkers = []
 set fileencoding=cp932
 
 au BufRead,BufNewFile *.psp         set filetype=html
+
+if has("gui")
+    set lines=73
+    set columns=90
+    set transparency=220
+    set t_Co=16
+    set guifont=MS_Gothic:h9
+    winpos 0 0
+endif
+
+
+
