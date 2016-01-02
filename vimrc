@@ -143,7 +143,7 @@ function! s:isNeocomplete()
         \ && has('patch885')))
 endfunction
 
-" Neobundle Settings
+" NeoBundle Settings
 filetype off
 if has('vim_starting')
     set runtimepath+=~/.vim/bundle/neobundle.vim/
