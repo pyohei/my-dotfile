@@ -65,8 +65,6 @@ set noundofile
 set wildmenu
 set wildmode=list,full
 set completeopt=menuone
-set completeopt+=noinsert
-set completeopt+=noselect
 
 " Search
 set wrapscan
@@ -186,6 +184,10 @@ NeoBundle 'pyohei/vim-bunshin'
 NeoBundle 'nanotech/jellybeans.vim'
 NeoBundle 'fatih/vim-go'
 NeoBundle 'vim-scripts/Align'
+NeoBundle 'pangloss/vim-javascript'
+NeoBundle 'mattn/emmet-vim'
+NeoBundle 'JulesWang/css'
+NeoBundle 'gorodinskiy/vim-coloresque'
 
 call neobundle#end()
 NeoBundleCheck
