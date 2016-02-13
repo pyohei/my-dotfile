@@ -81,7 +81,7 @@ set statusline=%F%m%r%h%w\%=
 " Gui window
 if has('kaoriya')
     if has('unix')
-        set transparency=20
+        set transparency=10
         set imdisable
     elseif has('win32') || has("gui")
         autocmd GUIEnter * set transparency=220
@@ -184,6 +184,7 @@ NeoBundle 'JulesWang/css.vim'
 NeoBundle 'gorodinskiy/vim-coloresque'
 NeoBundle 'open-browser.vim'
 NeoBundle 'ctrlpvim/ctrlp.vim'
+NeoBundle 'Konstruktionist/vim'
 
 call neobundle#end()
 NeoBundleCheck
