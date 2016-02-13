@@ -186,8 +186,9 @@ NeoBundle 'fatih/vim-go'
 NeoBundle 'vim-scripts/Align'
 NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'mattn/emmet-vim'
-NeoBundle 'JulesWang/css'
+NeoBundle 'JulesWang/css.vim'
 NeoBundle 'gorodinskiy/vim-coloresque'
+NeoBundle 'ctrlpvim/ctrlp.vim'
 
 call neobundle#end()
 NeoBundleCheck
