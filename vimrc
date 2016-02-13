@@ -29,7 +29,6 @@ au BufReadPost * if search('\S', 'w') == 0 |
 " Basic
 set runtimepath+=~/.vim/
 set helplang=ja
-set number
 set laststatus=2
 set cmdheight=2
 set showmatch
@@ -158,7 +157,6 @@ if !executable(g:neobundle#types#git#command_path)
 endif
 
 NeoBundle 'scrooloose/syntastic'
-NeoBundle 'grep.vim'
 NeoBundle 'surround.vim'
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'Shougo/unite.vim'
