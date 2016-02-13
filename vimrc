@@ -184,7 +184,7 @@ NeoBundle 'JulesWang/css.vim'
 NeoBundle 'gorodinskiy/vim-coloresque'
 NeoBundle 'open-browser.vim'
 NeoBundle 'ctrlpvim/ctrlp.vim'
-NeoBundle 'Konstruktionist/vim'
+NeoBundle 'mhartington/oceanic-next'
 
 call neobundle#end()
 NeoBundleCheck

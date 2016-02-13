@@ -12,7 +12,4 @@ endif
 
 let g:loaded_gvimrc = 1
 
-" colorscheme solarized
-" set background=dark
-" colorscheme hybrid
-colorscheme Kafka
+colorscheme OceanicNext
