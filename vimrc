@@ -173,7 +173,6 @@ endif
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'honza/vim-snippets'
-NeoBundle 'kannokanno/unite-todo'
 NeoBundle 'mattn/webapi-vim'
 NeoBundle 'fatih/vim-go'
 NeoBundle 'pyohei/vim-pyimporter'
@@ -222,20 +221,6 @@ nnoremap <silent> [unite]t :Unite tab<CR>
 nnoremap <silent> [unite]l :Unite bookmark<CR>
 nnoremap <silent> [unite]a :UniteBookmarkAdd<CR>
 nnoremap <silent> [unite]c :UniteWithBufferDir -buffer-name=files file<CR>
-
-" Key mapping in vimfiler.vim
-nnoremap [filer] <Nop>
-nmap     <Space>f [filer]
-nnoremap <silent> [filer]f :VimFiler<CR>
-nnoremap <silent> [filer]d :VimFilerCurrentDir<CR>
-nnoremap <silent> [filer]e :VimFilerExplore<CR>
-let g:vimfiler_enable_auto_cd = 1
-
-" unite todo keymap
-nnoremap [todo] <Nop>
-nmap     <Space>t [todo]
-nnoremap <silent> [todo]a :UniteTodoAddSimple<CR>
-nnoremap <silent> [todo]l :Unite todo<CR>
 
 " pyimporter(my Plugin)
 nnoremap [pyimporter] <Nop>
