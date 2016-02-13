@@ -159,12 +159,9 @@ endif
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'surround.vim'
 NeoBundle 'thinca/vim-quickrun'
+NeoBundle 'thinca/vim-ref'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimfiler.vim'
-NeoBundle 'open-browser.vim'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'altercation/vim-colors-solarized'
-NeoBundle 'thinca/vim-ref'
 if s:isNeocomplete()
     NeoBundle 'Shougo/neocomplete'
 else
@@ -178,13 +175,14 @@ NeoBundle 'fatih/vim-go'
 NeoBundle 'pyohei/vim-pyimporter'
 NeoBundle 'pyohei/vim-hipchat'
 NeoBundle 'pyohei/vim-bunshin'
-NeoBundle 'nanotech/jellybeans.vim'
 NeoBundle 'fatih/vim-go'
+NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'vim-scripts/Align'
 NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'mattn/emmet-vim'
 NeoBundle 'JulesWang/css.vim'
 NeoBundle 'gorodinskiy/vim-coloresque'
+NeoBundle 'open-browser.vim'
 NeoBundle 'ctrlpvim/ctrlp.vim'
 
 call neobundle#end()
@@ -221,6 +219,14 @@ nnoremap <silent> [unite]t :Unite tab<CR>
 nnoremap <silent> [unite]l :Unite bookmark<CR>
 nnoremap <silent> [unite]a :UniteBookmarkAdd<CR>
 nnoremap <silent> [unite]c :UniteWithBufferDir -buffer-name=files file<CR>
+
+" Key mapping in vimfiler.vim
+nnoremap [filer] <Nop>
+nmap     <Space>f [filer]
+nnoremap <silent> [filer]f :VimFiler<CR>
+nnoremap <silent> [filer]d :VimFilerCurrentDir<CR>
+nnoremap <silent> [filer]e :VimFilerExplore<CR>
+let g:vimfiler_enable_auto_cd = 1
 
 " pyimporter(my Plugin)
 nnoremap [pyimporter] <Nop>
