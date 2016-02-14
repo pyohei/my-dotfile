@@ -378,6 +378,8 @@ else
     endif
 endif
 
+autocmd FileType python setlocal completeopt-=preview
+
 " confirm wheather NeoCompleteCache
 function! IsNeocomplete()
     let isneo = has('lua') && (v:version > 703 || (v:version == 703
