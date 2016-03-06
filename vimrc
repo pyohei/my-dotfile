@@ -29,7 +29,6 @@ au BufReadPost * if search('\S', 'w') == 0 |
 " Basic
 set runtimepath+=~/.vim/
 set helplang=ja
-set number
 set laststatus=2
 set cmdheight=2
 set showmatch
@@ -82,7 +81,7 @@ set statusline=%F%m%r%h%w\%=
 " Gui window
 if has('kaoriya')
     if has('unix')
-        set transparency=20
+        set transparency=10
         set imdisable
     elseif has('win32') || has("gui")
         autocmd GUIEnter * set transparency=220
@@ -158,15 +157,11 @@ if !executable(g:neobundle#types#git#command_path)
 endif
 
 NeoBundle 'scrooloose/syntastic'
-NeoBundle 'grep.vim'
 NeoBundle 'surround.vim'
 NeoBundle 'thinca/vim-quickrun'
+NeoBundle 'thinca/vim-ref'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimfiler.vim'
-NeoBundle 'open-browser.vim'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'altercation/vim-colors-solarized'
-NeoBundle 'thinca/vim-ref'
 if s:isNeocomplete()
     NeoBundle 'Shougo/neocomplete'
 else
@@ -175,20 +170,21 @@ endif
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'honza/vim-snippets'
-NeoBundle 'kannokanno/unite-todo'
 NeoBundle 'mattn/webapi-vim'
 NeoBundle 'fatih/vim-go'
 NeoBundle 'pyohei/vim-pyimporter'
 NeoBundle 'pyohei/vim-hipchat'
 NeoBundle 'pyohei/vim-bunshin'
-NeoBundle 'nanotech/jellybeans.vim'
 NeoBundle 'fatih/vim-go'
+NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'vim-scripts/Align'
 NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'mattn/emmet-vim'
 NeoBundle 'JulesWang/css.vim'
 NeoBundle 'gorodinskiy/vim-coloresque'
+NeoBundle 'open-browser.vim'
 NeoBundle 'ctrlpvim/ctrlp.vim'
+NeoBundle 'mhartington/oceanic-next'
 
 call neobundle#end()
 NeoBundleCheck
@@ -232,12 +228,6 @@ nnoremap <silent> [filer]f :VimFiler<CR>
 nnoremap <silent> [filer]d :VimFilerCurrentDir<CR>
 nnoremap <silent> [filer]e :VimFilerExplore<CR>
 let g:vimfiler_enable_auto_cd = 1
-
-" unite todo keymap
-nnoremap [todo] <Nop>
-nmap     <Space>t [todo]
-nnoremap <silent> [todo]a :UniteTodoAddSimple<CR>
-nnoremap <silent> [todo]l :Unite todo<CR>
 
 " pyimporter(my Plugin)
 nnoremap [pyimporter] <Nop>
@@ -387,6 +377,8 @@ else
       let g:neocomplcache_force_omni_patterns = {}
     endif
 endif
+
+autocmd FileType python setlocal completeopt-=preview
 
 " confirm wheather NeoCompleteCache
 function! IsNeocomplete()
