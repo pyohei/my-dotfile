@@ -185,6 +185,7 @@ NeoBundle 'gorodinskiy/vim-coloresque'
 NeoBundle 'open-browser.vim'
 NeoBundle 'ctrlpvim/ctrlp.vim'
 NeoBundle 'mhartington/oceanic-next'
+NeoBundle 'mattn/vim-terminal'
 
 call neobundle#end()
 NeoBundleCheck
@@ -378,8 +379,6 @@ else
     endif
 endif
 
-autocmd FileType python setlocal completeopt-=preview
-
 " confirm wheather NeoCompleteCache
 function! IsNeocomplete()
     let isneo = has('lua') && (v:version > 703 || (v:version == 703
@@ -409,6 +408,8 @@ let g:go_highlight_structs = 1
 autocmd FileType go autocmd BufWritePre <buffer> Fmt
 exe "set rtp+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
 set completeopt=menu,preview
+
+autocmd FileType python setlocal completeopt-=preview
 
 " =====================================================
 " Someday make plugin
