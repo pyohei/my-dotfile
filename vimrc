@@ -152,7 +152,7 @@ endif
 "-----------------------------------------------------------------------------
 " deain test
 let s:dein_dir = expand('~/.vim/dein')
-let s:dein_repo_dir = s:dein_dir
+let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 
 " 
 if &runtimepath !~# '/dein.vim'
@@ -165,58 +165,70 @@ endif
 "set runtimepath+=~/.vim/dein/repos/github.com/Shougo/dein.vim
 
 "call dein#begin(expand('~/.cache/dein'))
-call dein#begin(expand('~/.vim/dein'))
+"call dein#begin(expand('~/.vim/dein'))
+call dein#begin(s:dein_dir)
 
-call dein#add('~/.vim/dein/repos/github.com/Shougo/dein.vim ')
-call dein#add('Shougo/dein.vim')
-" Use ??
-call dein#add('Shougo/vimproc.vim', {
-    \ 'build': {
-    \     'windows': 'tools\\update-dll-mingw',
-    \     'cygwin': 'make -f make_cygwin.mak',
-    \     'mac': 'make -f make_mac.mak',
-    \     'linux': 'make',
-    \     'unix': 'gmake',
-    \    },
-    \ })
+let s:toml = '~/.vim/dein.toml'
+"let s:lazy_toml = '~/.vim/dein/dein.toml'
 
-call dein#add('scrooloose/syntastic')
-call dein#add('surround.vim')
-call dein#add('thinca/vim-quickrun')
-call dein#add('thinca/vim-ref')
-call dein#add('Shougo/unite.vim')
-call dein#add('Shougo/vimfiler.vim')
-if s:isNeocomplete()
-    call dein#add('Shougo/neocomplete')
-else
-    call dein#add('Shougo/neocomplcache')
+"if dein#load_cache([expand('<sfile>'), s:toml, s:lazy_toml])
+if dein#load_cache([expand('<sfile>'), s:toml])
+  call dein#load_toml(s:toml,      {'lazy': 0})
+"  call dein#load_toml(s:lazy_toml, {'lazy': 1})
+  call dein#save_cache()
 endif
-call dein#add('Shougo/neosnippet')
-call dein#add('Shougo/neosnippet-snippets')
-call dein#add('honza/vim-snippets')
-call dein#add('mattn/webapi-vim')
-call dein#add('fatih/vim-go')
-call dein#add('pyohei/vim-pyimporter')
-call dein#add('pyohei/vim-hipchat')
-call dein#add('pyohei/vim-bunshin')
-call dein#add('fatih/vim-go')
-call dein#add('tpope/vim-fugitive')
-call dein#add('vim-scripts/Align')
-call dein#add('pangloss/vim-javascript')
-call dein#add('mattn/emmet-vim')
-call dein#add('JulesWang/css.vim')
-call dein#add('gorodinskiy/vim-coloresque')
-call dein#add('open-browser.vim')
-call dein#add('ctrlpvim/ctrlp.vim')
-call dein#add('mhartington/oceanic-next')
 
-
-
+"
+"call dein#add('~/.vim/dein/repos/github.com/Shougo/dein.vim ')
+"call dein#add('Shougo/dein.vim')
+"" Use ??
+"call dein#add('Shougo/vimproc.vim', {
+"    \ 'build': {
+"    \     'windows': 'tools\\update-dll-mingw',
+"    \     'cygwin': 'make -f make_cygwin.mak',
+"    \     'mac': 'make -f make_mac.mak',
+"    \     'linux': 'make',
+"    \     'unix': 'gmake',
+"    \    },
+"    \ })
+"
+"call dein#add('scrooloose/syntastic')
+"call dein#add('surround.vim')
+"call dein#add('thinca/vim-quickrun')
+"call dein#add('thinca/vim-ref')
+"call dein#add('Shougo/unite.vim')
+"call dein#add('Shougo/vimfiler.vim')
+"if s:isNeocomplete()
+"    call dein#add('Shougo/neocomplete')
+"else
+"    call dein#add('Shougo/neocomplcache')
+"endif
+"call dein#add('Shougo/neosnippet')
+"call dein#add('Shougo/neosnippet-snippets')
+"call dein#add('honza/vim-snippets')
+"call dein#add('mattn/webapi-vim')
+"call dein#add('fatih/vim-go')
+"call dein#add('pyohei/vim-pyimporter')
+"call dein#add('pyohei/vim-hipchat')
+"call dein#add('pyohei/vim-bunshin')
+"call dein#add('fatih/vim-go')
+"call dein#add('tpope/vim-fugitive')
+"call dein#add('vim-scripts/Align')
+"call dein#add('pangloss/vim-javascript')
+"call dein#add('mattn/emmet-vim')
+"call dein#add('JulesWang/css.vim')
+"call dein#add('gorodinskiy/vim-coloresque')
+"call dein#add('open-browser.vim')
+"call dein#add('ctrlpvim/ctrlp.vim')
+"call dein#add('mhartington/oceanic-next')
+"
+"
+"
 call dein#end()
 
-"if dein#check_install()
-"  call dein#install()
-"endif
+if dein#check_install()
+  call dein#install()
+endif
 
 
 "if has('vim_starting')
