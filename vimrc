@@ -266,9 +266,6 @@ if exists('g:fj')
     nnoremap <C-M><C-D> :exe 'cd ' . finddir(fj)<CR><CR>
 endif
 
-" Move current dir
-nnoremap <C-D>c :lcd %:p:h
-
 " vim development
 if exists('g:python_path')
     nnoremap <C-T><C-O> :call GetPyFile()<CR>
