@@ -1,0 +1,92 @@
+[[plugins]]
+repo = 'Shougo/dein.vim'
+
+[[plugins]]
+repo = 'Shougo/vimproc.vim'
+
+  [plugins.build]
+  windows = 'tools\\update-dll-mingw'
+  cygwin  = 'make -f make_cygwin.mak'
+  mac     = 'make -f make_mac.mak'
+  linux   = 'make'
+  unix    = 'gmake'
+
+[[plugins]]
+repo = 'Shougo/unite.vim'
+on_path = '.*'
+
+[[plugins]]
+repo = 'Shougo/vimfiler.vim'
+depends = ['unite.vim']
+on_path = '.*'
+
+[[plugins]]
+repo = 'Shougo/neocomplete'
+if = ''' has('lua') && (v:version > 703 || (v:version == 703 && has('patch885')))'''
+
+[[plugins]]
+repo = 'Shougo/neocomplcache'
+if = '''! has('lua') && (v:version > 703 || (v:version == 703 && has('patch885')))'''
+
+[[plugins]]
+repo = 'scrooloose/syntastic'
+
+[[plugins]]
+repo = 'surround.vim'
+
+[[plugins]]
+repo = 'thinca/vim-ref'
+
+[[plugins]]
+repo = 'Shougo/neosnippet-snippets'
+
+[[plugins]]
+repo = 'Shougo/neosnippet'
+
+[[plugins]]
+repo = 'honza/vim-snippets'
+
+[[plugins]]
+repo = 'mattn/webapi-vim'
+
+[[plugins]]
+repo = 'fatih/vim-go'
+
+[[plugins]]
+repo = 'pyohei/vim-pyimporter'
+
+[[plugins]]
+repo = 'pyohei/vim-hipchat'
+
+[[plugins]]
+repo = 'pyohei/vim-bunshin'
+
+[[plugins]]
+repo = 'fatih/vim-go'
+
+[[plugins]]
+repo = 'tpope/vim-fugitive'
+
+[[plugins]]
+repo = 'vim-scripts/Align'
+
+[[plugins]]
+repo = 'pangloss/vim-javascript'
+
+[[plugins]]
+repo = 'mattn/emmet-vim'
+
+[[plugins]]
+repo = 'JulesWang/css.vim'
+
+[[plugins]]
+repo = 'gorodinskiy/vim-coloresque'
+
+[[plugins]]
+repo = 'open-browser.vim'
+
+[[plugins]]
+repo = 'ctrlpvim/ctrlp.vim'
+
+[[plugins]]
+repo = 'mhartington/oceanic-next'

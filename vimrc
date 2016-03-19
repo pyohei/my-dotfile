@@ -144,50 +144,45 @@ endfunction
 
 " NeoBundle Settings
 filetype off
-if has('vim_starting')
-    set runtimepath+=~/.vim/bundle/neobundle.vim/
-    call neobundle#begin(expand('~/.vim/bundle/'))
+if &compatible
+  set nocompatible
+endif
+"set runtimepath+=~/.vim/dein/repos/github.com/Shougo/dein.vim
+
+"-----------------------------------------------------------------------------
+" deain test
+let s:dein_dir = expand('~/.vim/dein')
+let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
+
+" 
+if &runtimepath !~# '/dein.vim'
+  if !isdirectory(s:dein_repo_dir)
+    execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
+  endif
+  execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
 endif
 
-NeoBundleFetch 'Shougo/neobundle.vim'
+"set runtimepath+=~/.vim/dein/repos/github.com/Shougo/dein.vim
 
-" Windows settings (in setting command path myselr)
-if !executable(g:neobundle#types#git#command_path)
-  source ~/.vimrc.command
+"call dein#begin(expand('~/.cache/dein'))
+"call dein#begin(expand('~/.vim/dein'))
+call dein#begin(s:dein_dir)
+
+let s:toml = '~/.vim/dein.toml'
+let s:lazy_toml = '~/.vim/deinlazy.toml'
+
+if dein#load_cache([expand('<sfile>'), s:toml, s:lazy_toml])
+"if dein#load_cache([expand('<sfile>'), s:toml])
+  call dein#load_toml(s:toml,      {'lazy': 0})
+  call dein#load_toml(s:lazy_toml, {'lazy': 1})
+  call dein#save_cache()
 endif
 
-NeoBundle 'scrooloose/syntastic'
-NeoBundle 'surround.vim'
-NeoBundle 'thinca/vim-quickrun'
-NeoBundle 'thinca/vim-ref'
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/vimfiler.vim'
-if s:isNeocomplete()
-    NeoBundle 'Shougo/neocomplete'
-else
-    NeoBundle 'Shougo/neocomplcache'
-endif
-NeoBundle 'Shougo/neosnippet'
-NeoBundle 'Shougo/neosnippet-snippets'
-NeoBundle 'honza/vim-snippets'
-NeoBundle 'mattn/webapi-vim'
-NeoBundle 'fatih/vim-go'
-NeoBundle 'pyohei/vim-pyimporter'
-NeoBundle 'pyohei/vim-hipchat'
-NeoBundle 'pyohei/vim-bunshin'
-NeoBundle 'fatih/vim-go'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'vim-scripts/Align'
-NeoBundle 'pangloss/vim-javascript'
-NeoBundle 'mattn/emmet-vim'
-NeoBundle 'JulesWang/css.vim'
-NeoBundle 'gorodinskiy/vim-coloresque'
-NeoBundle 'open-browser.vim'
-NeoBundle 'ctrlpvim/ctrlp.vim'
-NeoBundle 'mhartington/oceanic-next'
+call dein#end()
 
-call neobundle#end()
-NeoBundleCheck
+if dein#check_install()
+  call dein#install()
+endif
 
 " file setting
 filetype on
@@ -242,6 +237,8 @@ vmap gx <Plug>(openbrowser-smart-search)
 nnoremap ZZ <Nop>
 nnoremap ZQ <Nop>
 
+nmap <silent> ,r <Plug>(quickrun)
+
 " Developnemt tool
 function! Vimcopy()
     if has('win32')
@@ -268,9 +265,6 @@ nmap <C-T><C-T> <Esc>i<C-r>=strftime("%Y%m%d%H%M%S")<CR><CR>
 if exists('g:fj')
     nnoremap <C-M><C-D> :exe 'cd ' . finddir(fj)<CR><CR>
 endif
-
-" Move current dir
-nnoremap <C-D>c :lcd %:p:h
 
 " vim development
 if exists('g:python_path')
