@@ -169,7 +169,7 @@ endif
 call dein#begin(s:dein_dir)
 
 let s:toml = '~/.vim/dein.toml'
-let s:lazy_toml = '~/.vim/dein/deinlazy.toml'
+let s:lazy_toml = '~/.vim/deinlazy.toml'
 
 if dein#load_cache([expand('<sfile>'), s:toml, s:lazy_toml])
 "if dein#load_cache([expand('<sfile>'), s:toml])
@@ -236,6 +236,8 @@ vmap gx <Plug>(openbrowser-smart-search)
 
 nnoremap ZZ <Nop>
 nnoremap ZQ <Nop>
+
+nmap <silent> ,r <Plug>(quickrun)
 
 " Developnemt tool
 function! Vimcopy()
