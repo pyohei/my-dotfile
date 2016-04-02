@@ -55,11 +55,6 @@ set expandtab
 set softtabstop=4
 inoremap # X#
 
-" Buckup
-set nobackup
-set noswapfile
-set noundofile
-
 " Complete
 set wildmenu
 set wildmode=list,full
@@ -162,10 +157,6 @@ if &runtimepath !~# '/dein.vim'
   execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
 endif
 
-"set runtimepath+=~/.vim/dein/repos/github.com/Shougo/dein.vim
-
-"call dein#begin(expand('~/.cache/dein'))
-"call dein#begin(expand('~/.vim/dein'))
 call dein#begin(s:dein_dir)
 
 let s:toml = '~/.vim/dein.toml'
@@ -403,11 +394,10 @@ let g:go_highlight_structs = 1
 autocmd FileType go autocmd BufWritePre <buffer> Fmt
 exe "set rtp+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
 set completeopt=menu,preview
+autocmd FileType go setlocal completeopt-=preview
 
-" =====================================================
-" Someday make plugin
-" =====================================================
 
+" Below script is sample for creating plugin.
 " ---- python docstring viewer ----
 function! Pydocdoc()
     let l:cur_file = expand('%:t')

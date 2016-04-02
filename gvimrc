@@ -1,5 +1,5 @@
 " ----------------------------------------------------------------------
-" gimrc
+" gvimrc settings
 "
 " Author: Shohei Mukai
 " Licence: MIT Licence
@@ -12,4 +12,5 @@ endif
 
 let g:loaded_gvimrc = 1
 
+" Color setting
 colorscheme OceanicNext
