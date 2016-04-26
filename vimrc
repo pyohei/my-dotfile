@@ -74,9 +74,9 @@ set statusline=%F%m%r%h%w\%=
 
 " Gui window
 if has('unix')
-    set transparency=10
     set imdisable
 elseif has('win32') || has("gui")
+    set transparency=10
     autocmd GUIEnter * set transparency=220
     set guioptions-=m   " hide menu
     set guioptions-=T   " hede tool
