@@ -53,12 +53,6 @@ set autoindent
 set smartindent
 set expandtab
 set softtabstop=4
-inoremap # X#
-
-" Buckup
-set nobackup
-set noswapfile
-set noundofile
 
 " Complete
 set wildmenu
@@ -79,15 +73,15 @@ set statusline=%F%m%r%h%w\%=
     \[TYPE=%Y]\[FORMAT=%{&ff}]\[ENC=%{&fileencoding}]\[LOW=%l/%L]
 
 " Gui window
-if has('kaoriya')
-    if has('unix')
-        set transparency=10
-        set imdisable
-    elseif has('win32') || has("gui")
-        autocmd GUIEnter * set transparency=220
-        set guioptions-=m   " hide menu
-        set guioptions-=T   " hede tool
-        set encoding=cp932
+if has('unix')
+    set transparency=10
+    set imdisable
+elseif has('win32') || has("gui")
+    autocmd GUIEnter * set transparency=220
+    set guioptions-=m   " hide menu
+    set guioptions-=T   " hede tool
+    set encoding=cp932
+    if has('kaoriya')
         source $VIM/plugins/kaoriya/encode_japan.vim
     endif
 endif
@@ -162,17 +156,12 @@ if &runtimepath !~# '/dein.vim'
   execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
 endif
 
-"set runtimepath+=~/.vim/dein/repos/github.com/Shougo/dein.vim
-
-"call dein#begin(expand('~/.cache/dein'))
-"call dein#begin(expand('~/.vim/dein'))
 call dein#begin(s:dein_dir)
 
 let s:toml = '~/.vim/dein.toml'
 let s:lazy_toml = '~/.vim/deinlazy.toml'
 
 if dein#load_cache([expand('<sfile>'), s:toml, s:lazy_toml])
-"if dein#load_cache([expand('<sfile>'), s:toml])
   call dein#load_toml(s:toml,      {'lazy': 0})
   call dein#load_toml(s:lazy_toml, {'lazy': 1})
   call dein#save_cache()
@@ -197,36 +186,11 @@ set ttymouse=xterm2
 let g:syntastic_python_checkers = ['pyflakes', 'pep8']
 
 " Key mapping
-nnoremap <silent> <Esc><Esc> :nohlsearch<CR>
 inoremap <silent> jj <Esc>
-nnoremap <silent> j gj
-nnoremap <silent> k gk
-nnoremap <Space>j 0
-nnoremap <Space>l $
-nnoremap q: :q<CR>
-
-" Key mapping in Unite.vim
-nnoremap [unite] <Nop>
-nmap     <Space>u [unite]
-nnoremap <silent> [unite]b :Unite buffer<CR>
-nnoremap <silent> [unite]f :Unite file<CR>
-nnoremap <silent> [unite]d :Unite directory<CR>
-nnoremap <silent> [unite]t :Unite tab<CR>
-nnoremap <silent> [unite]l :Unite bookmark<CR>
-nnoremap <silent> [unite]a :UniteBookmarkAdd<CR>
-nnoremap <silent> [unite]c :UniteWithBufferDir -buffer-name=files file<CR>
-
-" Key mapping in vimfiler.vim
-nnoremap [filer] <Nop>
-nmap     <Space>f [filer]
-nnoremap <silent> [filer]f :VimFiler<CR>
-nnoremap <silent> [filer]d :VimFilerCurrentDir<CR>
-nnoremap <silent> [filer]e :VimFilerExplore<CR>
-let g:vimfiler_enable_auto_cd = 1
 
 " pyimporter(my Plugin)
-nnoremap [pyimporter] <Nop>
-nmap     <Space>p [pyimporter]
+" nnoremap [pyimporter] <Nop>
+" nmap     <Space>p [pyimporter]
 nnoremap <silent> [pyimporter]i :PyImport
 
 " Opne browser setting
@@ -236,8 +200,6 @@ vmap gx <Plug>(openbrowser-smart-search)
 
 nnoremap ZZ <Nop>
 nnoremap ZQ <Nop>
-
-nmap <silent> ,r <Plug>(quickrun)
 
 " Developnemt tool
 function! Vimcopy()
@@ -261,16 +223,10 @@ nnoremap <C-T>v :source ~/.vimrc<CR>
 nmap <C-T><C-D> <Esc>i<C-r>=strftime("%Y%m%d")<CR><CR>
 nmap <C-T><C-T> <Esc>i<C-r>=strftime("%Y%m%d%H%M%S")<CR><CR>
 
-" set directory
-if exists('g:fj')
-    nnoremap <C-M><C-D> :exe 'cd ' . finddir(fj)<CR><CR>
-endif
-
 " vim development
 if exists('g:python_path')
     nnoremap <C-T><C-O> :call GetPyFile()<CR>
 endif
-
 
 " neosnippet test
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
@@ -279,11 +235,11 @@ xmap <C-k>     <Plug>(neosnippet_expand_target)
 
 " SuperTab like snippets behavior.
 imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)"
-\: pumvisible() ? "\<C-n>" : "\<TAB>"
+    \ "\<Plug>(neosnippet_expand_or_jump)"
+    \: pumvisible() ? "\<C-n>" : "\<TAB>"
 smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)"
-\: "\<TAB>"
+    \ "\<Plug>(neosnippet_expand_or_jump)"
+    \: "\<TAB>"
 
 " For snippet_complete marker.
 if has('conceal')
@@ -395,19 +351,16 @@ endfunction
 
 " ===== Golang Settings ======
 set runtimepath+=$GOROOT/misc/vim
-
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
 
 autocmd FileType go autocmd BufWritePre <buffer> Fmt
 exe "set rtp+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
-set completeopt=menu,preview
+"set completeopt=menu,preview
+set completeopt=menuone
 
-" =====================================================
-" Someday make plugin
-" =====================================================
-
+" Below script is sample for creating plugin.
 " ---- python docstring viewer ----
 function! Pydocdoc()
     let l:cur_file = expand('%:t')
@@ -432,4 +385,4 @@ function! LoadUniqueConfig()
         echo 'No config File!'
     endif
 endfunction
-nnoremap <silent> <Space>mono :call LoadUniqueConfig()<CR>
+nnoremap <silent> <Space>mo :call LoadUniqueConfig()<CR>
