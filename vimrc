@@ -65,20 +65,6 @@ set laststatus=2
 set statusline=%F%m%r%h%w\%=
     \[TYPE=%Y]\[FORMAT=%{&ff}]\[ENC=%{&fileencoding}]\[LOW=%l/%L]
 
-" Gui window
-if has('unix')
-    set imdisable
-elseif has('win32') || has("gui")
-    set transparency=10
-    autocmd GUIEnter * set transparency=220
-    set guioptions-=m   " hide menu
-    set guioptions-=T   " hede tool
-    set encoding=cp932
-    if has('kaoriya')
-        source $VIM/plugins/kaoriya/encode_japan.vim
-    endif
-endif
-
 " Hilight current line
 augroup cch
   autocmd! cch
@@ -203,12 +189,6 @@ function! Vimcopy()
     execute 'silent !cp ' l:filepath . ' ~/.' . l:filename
     echo 'Copy Your' l:filename . '.'
 endfunction
-nnoremap <silent> <C-T><C-P> :call Vimcopy()<CR>
-nnoremap <C-T>v :source ~/.vimrc<CR>
-
-" Insert Time
-nmap <C-T><C-D> <Esc>i<C-r>=strftime("%Y%m%d")<CR><CR>
-nmap <C-T><C-T> <Esc>i<C-r>=strftime("%Y%m%d%H%M%S")<CR><CR>
 
 " vim development
 if exists('g:python_path')
