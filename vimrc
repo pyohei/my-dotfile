@@ -7,13 +7,6 @@
 
 scriptencoding utf-8
 
-" Reload gvimrc (in developint mode)
-if exists("g:loaded_vimrc") && g:loaded_vimrc == 1 && has("gui") && !has("win32")
-    source ~/.gvimrc
-elseif has("gui")
-    colorscheme desert
-endif
-
 " Read configuration
 if filereadable(expand('~/.vimrc.cnf'))
     source ~/.vimrc.cnf
@@ -123,13 +116,7 @@ function! DevTest()
     call s:vimrc_local(expand('<afile>:p:h'))
 endfunction
 
-if !exists("g:loaded_vimrc")
-    call s:vimrc_local(getcwd())
-    let g:loaded_vimrc = 1
-endif
 " ****************************************************************
-
-
 " Check weather neocomplete or neocomplcache
 function! s:isNeocomplete()
     return has('lua') && (v:version > 703 || (v:version == 703

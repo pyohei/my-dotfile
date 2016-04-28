@@ -10,7 +10,6 @@ if !exists("g:loaded_gvimrc")
     set columns=80
 endif
 
-let g:loaded_gvimrc = 1
-
+set transparency=10
 " Color setting
 colorscheme OceanicNext
