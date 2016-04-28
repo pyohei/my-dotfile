@@ -336,23 +336,6 @@ function! s:VSetSearch()
     let @s = l:temp
 endfunction
 
-" Below script is sample for creating plugin.
-" ---- python docstring viewer ----
-function! Pydocdoc()
-    let l:cur_file = expand('%:t')
-    let l:cur_dir = getcwd()
-python << EOF
-import vim
-import_dir = vim.eval('l:cur_dir')
-import sys
-sys.path.append(import_dir)
-import_file = vim.eval('l:cur_file')
-import_mod = import_file.replace('.py', '')
-exec "import {0} as docstring_help_module".format(import_mod)
-help(docstring_help_module)
-EOF
-endfunction
-
 " Load unique config (Testing)
 function! LoadUniqueConfig()
     if filereadable(expand('~/.vimrc.uni1'))
