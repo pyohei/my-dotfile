@@ -12,4 +12,4 @@ endif
 
 set transparency=10
 " Color setting
-colorscheme OceanicNext
+colorscheme molokai

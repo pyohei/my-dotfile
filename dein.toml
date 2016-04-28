@@ -90,3 +90,6 @@ repo = 'ctrlpvim/ctrlp.vim'
 
 [[plugins]]
 repo = 'mhartington/oceanic-next'
+
+[[plugins]]
+repo = 'tomasr/molokai'
