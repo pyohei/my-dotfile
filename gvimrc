@@ -12,6 +12,7 @@ endif
 
 set transparency=10
 " Color setting
+set background=dark
 colorscheme OceanicNext
 
 " Gui window
