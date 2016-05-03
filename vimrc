@@ -38,7 +38,7 @@ set t_vb=
 set novisualbell
 set ambiwidth=single
 set clipboard+=unnamed
-set history=2000
+set history=4000
 set cmdheight=2
 set tabstop=4
 set shiftwidth=4
@@ -46,6 +46,7 @@ set autoindent
 set smartindent
 set expandtab
 set softtabstop=4
+set noequalalways
 
 " Complete
 set wildmenu
@@ -64,6 +65,12 @@ set listchars=tab:^^,extends:>,precedes:<,nbsp:%
 set laststatus=2
 set statusline=%F%m%r%h%w\%=
     \[TYPE=%Y]\[FORMAT=%{&ff}]\[ENC=%{&fileencoding}]\[LOW=%l/%L]
+
+" Backup/Swap/Undo
+" **Attension! You make directory with your hand.**
+set directory=~/.vim/var/swap
+set backupdir=~/.vim/var/backup
+set undodir=~/.vim/var/undo
 
 " Hilight current line
 augroup cch
