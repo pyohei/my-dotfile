@@ -5,7 +5,7 @@ let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
 
 
-autocmd FileType go autocmd BufWritePre <buffer> Fmt
+autocmd FileType go autocmd BufWritePre <buffer> GoFmt
 exe "set rtp+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
 "set completeopt=menu,preview
 set completeopt=menuone
