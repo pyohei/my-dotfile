@@ -93,3 +93,6 @@ repo = 'mhartington/oceanic-next'
 
 [[plugins]]
 repo = 'tomasr/molokai'
+
+[[plugins]]
+repo = 'glidenote/memolist.vim'
