@@ -121,7 +121,6 @@ filetype off
 if &compatible
   set nocompatible
 endif
-"set runtimepath+=~/.vim/dein/repos/github.com/Shougo/dein.vim
 
 "-----------------------------------------------------------------------------
 " deain test
@@ -162,9 +161,6 @@ syntax on
 set mouse=a
 set ttymouse=xterm2
 
-" python syntax check
-let g:syntastic_python_checkers = ['pyflakes', 'pep8']
-
 " Key mapping
 inoremap <silent> jj <Esc>
 
@@ -173,10 +169,6 @@ inoremap <silent> jj <Esc>
 " nmap     <Space>p [pyimporter]
 nnoremap <silent> [pyimporter]i :PyImport
 
-" Opne browser setting
-let g:netrw_nogx = 1
-nmap gx <Plug>(openbrowser-smart-search)
-vmap gx <Plug>(openbrowser-smart-search)
 
 nnoremap ZZ <Nop>
 nnoremap ZQ <Nop>
@@ -220,6 +212,9 @@ if has('conceal')
   set conceallevel=2
   set concealcursor=niv
 endif
+
+" python syntax check
+let g:syntastic_python_checkers = ['pyflakes', 'pep8']
 
 " Setting neocomplete and neocomplcache
 if s:isNeocomplete()
@@ -312,10 +307,9 @@ function! IsNeocomplete()
     return isneo
 endfunction
 
-vmap X y/<C-r>"<CR>
+
 xnoremap * :<C-u>call <SID>VSetSearch()<CR>/<C-R>=@/<CR><CR>
 xnoremap # :<C-u>call <SID>VSetSearch()<CR>?<C-R>=@/<CR><CR>
-
 function! s:VSetSearch()
     let l:temp = @s
     norm! gv"sy
