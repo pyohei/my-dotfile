@@ -317,12 +317,7 @@ function! s:VSetSearch()
     let @s = l:temp
 endfunction
 
-" Load unique config (Testing)
-function! LoadUniqueConfig()
-    if filereadable(expand('~/.vimrc.uni1'))
-        source ~/.vimrc.uni1
-    else
-        echo 'No config File!'
-    endif
-endfunction
-nnoremap <silent> <Space>mo :call LoadUniqueConfig()<CR>
+" Load after original settings
+if filereadable(expand('~/.vimrc.after'))
+    source ~/.vimrc.after
+endif
