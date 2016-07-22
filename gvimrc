@@ -26,5 +26,8 @@ elseif has('win32') || has("gui")
     set encoding=cp932
     if has('kaoriya')
         source $VIM/plugins/kaoriya/encode_japan.vim
+        source $VIMRUNTIME/delmenu.vim
+        set langmenu=ja_jp.utf-8
+        source $VIMRUNTIME/menu.vim
     endif
 endif
