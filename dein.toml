@@ -93,3 +93,6 @@ repo = 'tomasr/molokai'
 
 [[plugins]]
 repo = 'glidenote/memolist.vim'
+
+[[plugins]]
+repo = 'lambdalisue/vim-gita'
