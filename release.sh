@@ -14,14 +14,22 @@ CUR_DIR=$(cd $(dirname $0);pwd)
 
 NOW=`date +"%Y%m%d%H%M%S"`
 
+# TODO
+#   Delete cache file existing in .vim/var directory.
+#   Delete dein directory .vim/dein
 
 echo "Start --->>>"
 # --- Create backup directory ---
+# TODO
+#   Create `backup swap undo` directory in .vim/var
+#   Create dein directory
+#   Or create empty directory in this repository.
 if [ ! -d ${VIM_BACKUP_DIR} ]; then
     mkdir -p ${VIM_BACKUP_DIR}
 fi
 
-
+# TODO
+#   Rotate backup. I am thinking number of max backup is 10.
 backup() {
     ORG_FILE=${VIM_BASE_DIR}/.$1
     BACKUP_FILE=${VIM_BACKUP_DIR}/$1-${NOW}
