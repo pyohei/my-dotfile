@@ -26,25 +26,24 @@ backup() {
     ORG_FILE=${VIM_BASE_DIR}/.$1
     BACKUP_FILE=${VIM_BACKUP_DIR}/$1-${NOW}
     if [ -e ${ORG_FILE} ]; then
-        cp ${ORG_FILE} ${BACKUP_FILE}
+        cp -r ${ORG_FILE} ${BACKUP_FILE}
     fi
     echo ">>> backup .$1 to ${BACKUP_FILE} >>>"
 }
 
 backup vimrc
 backup gvimrc
-backup vimrc.cnf
-
 
 renew() {
     CUR_FILE=${CUR_DIR}/$1
     NEW_FILE=${VIM_BASE_DIR}/.$1
-    cp ${CUR_FILE} ${NEW_FILE} 
+    cp -r ${CUR_FILE} ${NEW_FILE} 
     echo ">>> Renew .$1 >>>"
 }
 
 renew vimrc
 renew gvimrc
+renew vim
 
 read -p 'Reset cnf file?[Y]: ' ANSWER
 if [ "$ANSWER" = "Y" ]; then
