@@ -51,7 +51,7 @@ set noequalalways
 " Complete
 set wildmenu
 set wildmode=list,full
-set completeopt=menuone
+set completeopt=menu,preview
 
 " Search
 set wrapscan
