@@ -21,14 +21,6 @@ depends = ['unite.vim']
 on_path = '.*'
 
 [[plugins]]
-repo = 'Shougo/neocomplete'
-if = ''' has('lua') && (v:version > 703 || (v:version == 703 && has('patch885')))'''
-
-[[plugins]]
-repo = 'Shougo/neocomplcache'
-if = '''! has('lua') && (v:version > 703 || (v:version == 703 && has('patch885')))'''
-
-[[plugins]]
 repo = 'scrooloose/syntastic'
 
 [[plugins]]
@@ -36,12 +28,6 @@ repo = 'surround.vim'
 
 [[plugins]]
 repo = 'thinca/vim-ref'
-
-[[plugins]]
-repo = 'Shougo/neosnippet-snippets'
-
-[[plugins]]
-repo = 'Shougo/neosnippet'
 
 [[plugins]]
 repo = 'honza/vim-snippets'
@@ -96,3 +82,12 @@ repo = 'glidenote/memolist.vim'
 
 [[plugins]]
 repo = 'lambdalisue/vim-gita'
+
+[[plugins]]
+repo = 'davidhalter/jedi-vim'
+
+[[plugins]]
+repo = 'tpope/vim-rails'
+
+[[plugins]]
+repo = 'osyo-manga/vim-monster'
