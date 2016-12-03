@@ -154,6 +154,7 @@ set ttymouse=xterm2
 
 " Key mapping
 inoremap <silent> jj <Esc>
+inoremap # X#
 
 " pyimporter(my Plugin)
 " nnoremap [pyimporter] <Nop>
