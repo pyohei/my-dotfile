@@ -36,9 +36,6 @@ repo = 'honza/vim-snippets'
 repo = 'mattn/webapi-vim'
 
 [[plugins]]
-repo = 'fatih/vim-go'
-
-[[plugins]]
 repo = 'pyohei/vim-pyimporter'
 
 [[plugins]]

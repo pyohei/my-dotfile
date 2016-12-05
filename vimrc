@@ -186,14 +186,6 @@ if exists('g:python_path')
     nnoremap <C-T><C-O> :call GetPyFile()<CR>
 endif
 
-" SuperTab like snippets behavior.
-imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-    \ "\<Plug>(neosnippet_expand_or_jump)"
-    \: pumvisible() ? "\<C-n>" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-    \ "\<Plug>(neosnippet_expand_or_jump)"
-    \: "\<TAB>"
-
 " For snippet_complete marker.
 if has('conceal')
   set conceallevel=2
