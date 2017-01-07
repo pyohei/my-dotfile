@@ -47,7 +47,7 @@ set smartindent
 set expandtab
 set softtabstop=4
 set noequalalways
-
+" 
 " Complete
 set wildmenu
 set wildmode=list,full
@@ -120,34 +120,33 @@ endif
 " deain test
 let s:dein_dir = expand('~/.vim/dein')
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
-
-" 
+ 
+ 
 if &runtimepath !~# '/dein.vim'
   if !isdirectory(s:dein_repo_dir)
     execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
   endif
   execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
 endif
-
+ 
 call dein#begin(s:dein_dir)
-
+ 
 let s:toml = '~/.vim/dein.toml'
 let s:lazy_toml = '~/.vim/deinlazy.toml'
-
+ 
 call dein#load_toml(s:toml,      {'lazy': 0})
 call dein#load_toml(s:lazy_toml, {'lazy': 1})
-
+ 
 call dein#end()
-
+ 
 if dein#check_install()
   call dein#install()
 endif
-
+ 
 " file setting
-filetype on
-filetype plugin on
-syntax on
-
+filetype plugin indent on
+syntax enable
+ 
 " mouse scrolling
 set mouse=a
 set ttymouse=xterm2
@@ -192,11 +191,7 @@ if has('conceal')
   set concealcursor=niv
 endif
 
-" python syntax check
-let g:syntastic_python_checkers = ['pyflakes', 'pep8']
-
-autocmd FileType python setlocal completeopt-=preview
-
+" Seach option
 xnoremap * :<C-u>call <SID>VSetSearch()<CR>/<C-R>=@/<CR><CR>
 xnoremap # :<C-u>call <SID>VSetSearch()<CR>?<C-R>=@/<CR><CR>
 function! s:VSetSearch()
@@ -205,8 +200,3 @@ function! s:VSetSearch()
     let @/ = '\V' . substitute(escape(@s, '/\'), '\n', '\\n', 'g')
     let @s = l:temp
 endfunction
-
-" Load after original settings
-if filereadable(expand('~/.vimrc.after'))
-    source ~/.vimrc.after
-endif
