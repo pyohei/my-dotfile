@@ -21,14 +21,6 @@ depends = ['unite.vim']
 on_path = '.*'
 
 [[plugins]]
-repo = 'Shougo/neocomplete'
-if = ''' has('lua') && (v:version > 703 || (v:version == 703 && has('patch885')))'''
-
-[[plugins]]
-repo = 'Shougo/neocomplcache'
-if = '''! has('lua') && (v:version > 703 || (v:version == 703 && has('patch885')))'''
-
-[[plugins]]
 repo = 'scrooloose/syntastic'
 
 [[plugins]]
@@ -38,19 +30,10 @@ repo = 'surround.vim'
 repo = 'thinca/vim-ref'
 
 [[plugins]]
-repo = 'Shougo/neosnippet-snippets'
-
-[[plugins]]
-repo = 'Shougo/neosnippet'
-
-[[plugins]]
 repo = 'honza/vim-snippets'
 
 [[plugins]]
 repo = 'mattn/webapi-vim'
-
-[[plugins]]
-repo = 'fatih/vim-go'
 
 [[plugins]]
 repo = 'pyohei/vim-pyimporter'
@@ -83,10 +66,25 @@ repo = 'JulesWang/css.vim'
 repo = 'gorodinskiy/vim-coloresque'
 
 [[plugins]]
-repo = 'open-browser.vim'
-
-[[plugins]]
 repo = 'ctrlpvim/ctrlp.vim'
 
 [[plugins]]
 repo = 'mhartington/oceanic-next'
+
+[[plugins]]
+repo = 'tomasr/molokai'
+
+[[plugins]]
+repo = 'glidenote/memolist.vim'
+
+[[plugins]]
+repo = 'lambdalisue/vim-gita'
+
+[[plugins]]
+repo = 'davidhalter/jedi-vim'
+
+[[plugins]]
+repo = 'tpope/vim-rails'
+
+[[plugins]]
+repo = 'osyo-manga/vim-monster'

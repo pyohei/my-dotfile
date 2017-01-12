@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # ----------------------------------------------------------------------
 # Release vims setting script.
 #
@@ -14,41 +14,51 @@ CUR_DIR=$(cd $(dirname $0);pwd)
 
 NOW=`date +"%Y%m%d%H%M%S"`
 
-
 echo "Start --->>>"
-# --- Create backup directory ---
+
+# Delete cache
+deleteCache() {
+    # rm -rf $1
+    echo "--->>> Delete $1"
+}
+
+deleteCache ~/.vim/var
+deleteCache ~/.vim/dein
+
 if [ ! -d ${VIM_BACKUP_DIR} ]; then
     mkdir -p ${VIM_BACKUP_DIR}
 fi
 
-
+# TODO
+#   Rotate backup. I am thinking number of max backup is 10.
 backup() {
     ORG_FILE=${VIM_BASE_DIR}/.$1
     BACKUP_FILE=${VIM_BACKUP_DIR}/$1-${NOW}
-    if [ -e ${ORG_FILE} ]; then
-        cp ${ORG_FILE} ${BACKUP_FILE}
-    fi
+    # if [ -e ${ORG_FILE} ]; then
+        # cp -r ${ORG_FILE} ${BACKUP_FILE}
+    # fi
     echo ">>> backup .$1 to ${BACKUP_FILE} >>>"
 }
 
 backup vimrc
 backup gvimrc
-backup vimrc.cnf
-
 
 renew() {
     CUR_FILE=${CUR_DIR}/$1
     NEW_FILE=${VIM_BASE_DIR}/.$1
-    cp ${CUR_FILE} ${NEW_FILE} 
+    # cp -r ${CUR_FILE} ${NEW_FILE} 
     echo ">>> Renew .$1 >>>"
 }
 
 renew vimrc
 renew gvimrc
+renew vim
 
 read -p 'Reset cnf file?[Y]: ' ANSWER
 if [ "$ANSWER" = "Y" ]; then
     renew vimrc.cnf
 fi
+
+# Delete .gitkeep file
 
 echo ">>>--- Finish"

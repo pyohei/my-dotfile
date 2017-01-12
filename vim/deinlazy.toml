@@ -1,3 +1,3 @@
 [[plugins]]
 repo = 'thinca/vim-quickrun'
-on_map = '<Plug>'
+on_cmd = ['QR']

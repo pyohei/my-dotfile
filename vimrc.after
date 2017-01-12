@@ -30,5 +30,13 @@ if has("gui")
     winpos 0 0
 endif
 
+" fugitive setting.
+" g:fugitive_git_executable = ''
+" 
+" let g:
 
-
+"""" MEMO """""
+" Make alias to use plugin
+"
+" wget, curl ... mattn/webapi
+" git ... Shougo/neobundle, fugitive
