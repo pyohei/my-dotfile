@@ -21,3 +21,9 @@ autocmd FileType python setlocal completeopt-=preview
 
 " python syntax check
 let g:syntastic_python_checkers = ['pyflakes', 'pep8']
+
+" pyimporter(my Plugin)
+nnoremap [pyimporter] <Nop>
+nmap     <Space>p [pyimporter]
+nnoremap <silent> [pyimporter]i :PyImport
+

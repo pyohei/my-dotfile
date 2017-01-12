@@ -47,7 +47,7 @@ set smartindent
 set expandtab
 set softtabstop=4
 set noequalalways
-" 
+ 
 " Complete
 set wildmenu
 set wildmode=list,full
@@ -65,6 +65,10 @@ set listchars=tab:^^,extends:>,precedes:<,nbsp:%
 set laststatus=2
 set statusline=%F%m%r%h%w\%=
     \[TYPE=%Y]\[FORMAT=%{&ff}]\[ENC=%{&fileencoding}]\[LOW=%l/%L]
+
+nnoremap ZZ <Nop>
+nnoremap ZQ <Nop>
+
 
 " Backup/Swap/Undo
 " **Attension! You make directory with your hand.**
@@ -87,9 +91,21 @@ augroup highlightDoubleByteSpace
   autocmd VimEnter,WinEnter * match DoubleByteSpace /　/
 augroup END
 
+" Seach option
+xnoremap * :<C-u>call <SID>VSetSearch()<CR>/<C-R>=@/<CR><CR>
+xnoremap # :<C-u>call <SID>VSetSearch()<CR>?<C-R>=@/<CR><CR>
+function! s:VSetSearch()
+    let l:temp = @s
+    norm! gv"sy
+    let @/ = '\V' . substitute(escape(@s, '/\'), '\n', '\\n', 'g')
+    let @s = l:temp
+endfunction
+
+
+" *****************************************************************
+" *****************************************************************
 " *****************************************************************
 " Load development setting(This change to plugin?)
-" *****************************************************************
 augroup vimrc-local
     autocmd!
     autocmd BufNewFile, BufReadPost * call s:vimrc_local(
@@ -109,18 +125,46 @@ function! DevTest()
     call s:vimrc_local(expand('<afile>:p:h'))
 endfunction
 
-" ****************************************************************
-" NeoBundle Settings
+" Developnemt tool
+function! Vimcopy()
+    if has('win32')
+        echo 'Your machine is unsupported'
+        return
+    endif
+    let l:filename = expand('%')
+    if l:filename !=# 'vimrc' && l:filename !=# 'gvimrc'
+        echo 'Your file is not vim setting file'
+        return
+    endif
+    let l:filepath = expand('%:p')
+    execute 'silent !cp ' l:filepath . ' ~/.' . l:filename
+    echo 'Copy Your' l:filename . '.'
+endfunction
+
+if exists('g:python_path')
+    nnoremap <C-T><C-O> :call GetPyFile()<CR>
+endif
+
+" mouse scrolling
+set mouse=a
+set ttymouse=xterm2
+
+" Key mapping
+inoremap # X#
+
+"-----------------------------------------------------------------------------
+"-----------------------------------------------------------------------------
+"-----------------------------------------------------------------------------
+"-----------------------------------------------------------------------------
+" deain test
+
 filetype off
 if &compatible
   set nocompatible
 endif
 
-"-----------------------------------------------------------------------------
-" deain test
 let s:dein_dir = expand('~/.vim/dein')
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
- 
  
 if &runtimepath !~# '/dein.vim'
   if !isdirectory(s:dein_repo_dir)
@@ -146,57 +190,14 @@ endif
 " file setting
 filetype plugin indent on
 syntax enable
+"-----------------------------------------------------------------------------
+"-----------------------------------------------------------------------------
+"-----------------------------------------------------------------------------
+"-----------------------------------------------------------------------------
  
-" mouse scrolling
-set mouse=a
-set ttymouse=xterm2
-
-" Key mapping
-inoremap <silent> jj <Esc>
-inoremap # X#
-
-" pyimporter(my Plugin)
-" nnoremap [pyimporter] <Nop>
-" nmap     <Space>p [pyimporter]
-nnoremap <silent> [pyimporter]i :PyImport
-
-
-nnoremap ZZ <Nop>
-nnoremap ZQ <Nop>
-
-" Developnemt tool
-function! Vimcopy()
-    if has('win32')
-        echo 'Your machine is unsupported'
-        return
-    endif
-    let l:filename = expand('%')
-    if l:filename !=# 'vimrc' && l:filename !=# 'gvimrc'
-        echo 'Your file is not vim setting file'
-        return
-    endif
-    let l:filepath = expand('%:p')
-    execute 'silent !cp ' l:filepath . ' ~/.' . l:filename
-    echo 'Copy Your' l:filename . '.'
-endfunction
-
-" vim development
-if exists('g:python_path')
-    nnoremap <C-T><C-O> :call GetPyFile()<CR>
-endif
-
+"""" ???????????????? """""""
 " For snippet_complete marker.
 if has('conceal')
   set conceallevel=2
   set concealcursor=niv
 endif
-
-" Seach option
-xnoremap * :<C-u>call <SID>VSetSearch()<CR>/<C-R>=@/<CR><CR>
-xnoremap # :<C-u>call <SID>VSetSearch()<CR>?<C-R>=@/<CR><CR>
-function! s:VSetSearch()
-    let l:temp = @s
-    norm! gv"sy
-    let @/ = '\V' . substitute(escape(@s, '/\'), '\n', '\\n', 'g')
-    let @s = l:temp
-endfunction
