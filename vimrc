@@ -152,48 +152,14 @@ set ttymouse=xterm2
 " Key mapping
 inoremap # X#
 
-"-----------------------------------------------------------------------------
-"-----------------------------------------------------------------------------
-"-----------------------------------------------------------------------------
-"-----------------------------------------------------------------------------
-" deain test
-
-filetype off
-if &compatible
-  set nocompatible
+" Load all vim plugin from dein.
+let g:my_plugin_load = 1
+if g:my_plugin_load == 1
+    let s:plugin_path = fnamemodify(expand('<sfile>'), ':h'
+        \ ) . '/.vim/pluginload.vim'
+    " below is same with `source ~/.vim/pluginload.vim`
+    execute 'source' s:plugin_path
 endif
-
-let s:dein_dir = expand('~/.vim/dein')
-let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
- 
-if &runtimepath !~# '/dein.vim'
-  if !isdirectory(s:dein_repo_dir)
-    execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
-  endif
-  execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
-endif
- 
-call dein#begin(s:dein_dir)
- 
-let s:toml = '~/.vim/dein.toml'
-let s:lazy_toml = '~/.vim/deinlazy.toml'
- 
-call dein#load_toml(s:toml,      {'lazy': 0})
-call dein#load_toml(s:lazy_toml, {'lazy': 1})
- 
-call dein#end()
- 
-if dein#check_install()
-  call dein#install()
-endif
- 
-" file setting
-filetype plugin indent on
-syntax enable
-"-----------------------------------------------------------------------------
-"-----------------------------------------------------------------------------
-"-----------------------------------------------------------------------------
-"-----------------------------------------------------------------------------
  
 """" ???????????????? """""""
 " For snippet_complete marker.
