@@ -69,7 +69,6 @@ set statusline=%F%m%r%h%w\%=
 nnoremap ZZ <Nop>
 nnoremap ZQ <Nop>
 
-
 " Backup/Swap/Undo
 " **Attension! You make directory with your hand.**
 set directory=~/.vim/var/swap
@@ -85,7 +84,7 @@ augroup END
 
 " Double Space highlight
 augroup highlightDoubleByteSpace
-  autocmd!
+  autocmd! highlightDoubleByteSpace
   autocmd VimEnter,Colorscheme * highlight DoubleByteSpace cterm=underline
     \ ctermfg=Green gui=reverse guifg=Green
   autocmd VimEnter,WinEnter * match DoubleByteSpace /　/
@@ -101,11 +100,21 @@ function! s:VSetSearch()
     let @s = l:temp
 endfunction
 
+" mouse scrolling
+set mouse=a
+set ttymouse=xterm2
 
-" *****************************************************************
-" *****************************************************************
-" *****************************************************************
-" Load development setting(This change to plugin?)
+" Key mapping
+inoremap # X#
+
+" For snippet_complete marker.
+if has('conceal')
+  set conceallevel=2
+  set concealcursor=niv
+endif
+
+
+" Load development setting
 let g:my_devlopmet_mood = 1
 if g:my_devlopmet_mood== 1
     let s:plugin_path = fnamemodify(expand('<sfile>'), ':h'
@@ -114,17 +123,6 @@ if g:my_devlopmet_mood== 1
     execute 'source' s:plugin_path
 endif
 
-if exists('g:python_path')
-    nnoremap <C-T><C-O> :call GetPyFile()<CR>
-endif
-
-" mouse scrolling
-set mouse=a
-set ttymouse=xterm2
-
-" Key mapping
-inoremap # X#
-
 " Load all vim plugin from dein.
 let g:my_plugin_load = 1
 if g:my_plugin_load == 1
@@ -132,11 +130,4 @@ if g:my_plugin_load == 1
         \ ) . '/.vim/pluginload.vim'
     " below is same with `source ~/.vim/pluginload.vim`
     execute 'source' s:plugin_path
-endif
- 
-"""" ???????????????? """""""
-" For snippet_complete marker.
-if has('conceal')
-  set conceallevel=2
-  set concealcursor=niv
 endif
