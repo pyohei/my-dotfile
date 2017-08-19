@@ -47,7 +47,7 @@ set smartindent
 set expandtab
 set softtabstop=4
 set noequalalways
-" 
+ 
 " Complete
 set wildmenu
 set wildmode=list,full
@@ -66,6 +66,9 @@ set laststatus=2
 set statusline=%F%m%r%h%w\%=
     \[TYPE=%Y]\[FORMAT=%{&ff}]\[ENC=%{&fileencoding}]\[LOW=%l/%L]
 
+nnoremap ZZ <Nop>
+nnoremap ZQ <Nop>
+
 " Backup/Swap/Undo
 " **Attension! You make directory with your hand.**
 set directory=~/.vim/var/swap
@@ -81,115 +84,11 @@ augroup END
 
 " Double Space highlight
 augroup highlightDoubleByteSpace
-  autocmd!
+  autocmd! highlightDoubleByteSpace
   autocmd VimEnter,Colorscheme * highlight DoubleByteSpace cterm=underline
     \ ctermfg=Green gui=reverse guifg=Green
   autocmd VimEnter,WinEnter * match DoubleByteSpace /　/
 augroup END
-
-" *****************************************************************
-" Load development setting(This change to plugin?)
-" *****************************************************************
-augroup vimrc-local
-    autocmd!
-    autocmd BufNewFile, BufReadPost * call s:vimrc_local(
-        \ expand('<afile>:p:h'))
-augroup END
-
-function! s:vimrc_local(loc)
-    let files = findfile('plugin-import.vim', escape(a:loc, ' ') . ';', -1)
-    for i in reverse(filter(files, 'filereadable(v:val)'))
-        source `=i`
-    endfor
-endfunction
-
-" This is for confirm of function s:vimrc_loal
-function! DevTest()
-    let dirdir = expand('<afile>:p:h')
-    call s:vimrc_local(expand('<afile>:p:h'))
-endfunction
-
-" ****************************************************************
-" NeoBundle Settings
-filetype off
-if &compatible
-  set nocompatible
-endif
-
-"-----------------------------------------------------------------------------
-" deain test
-let s:dein_dir = expand('~/.vim/dein')
-let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
- 
- 
-if &runtimepath !~# '/dein.vim'
-  if !isdirectory(s:dein_repo_dir)
-    execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
-  endif
-  execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
-endif
- 
-call dein#begin(s:dein_dir)
- 
-let s:toml = '~/.vim/dein.toml'
-let s:lazy_toml = '~/.vim/deinlazy.toml'
- 
-call dein#load_toml(s:toml,      {'lazy': 0})
-call dein#load_toml(s:lazy_toml, {'lazy': 1})
- 
-call dein#end()
- 
-if dein#check_install()
-  call dein#install()
-endif
- 
-" file setting
-filetype plugin indent on
-syntax enable
- 
-" mouse scrolling
-set mouse=a
-set ttymouse=xterm2
-
-" Key mapping
-inoremap <silent> jj <Esc>
-inoremap # X#
-
-" pyimporter(my Plugin)
-" nnoremap [pyimporter] <Nop>
-" nmap     <Space>p [pyimporter]
-nnoremap <silent> [pyimporter]i :PyImport
-
-
-nnoremap ZZ <Nop>
-nnoremap ZQ <Nop>
-
-" Developnemt tool
-function! Vimcopy()
-    if has('win32')
-        echo 'Your machine is unsupported'
-        return
-    endif
-    let l:filename = expand('%')
-    if l:filename !=# 'vimrc' && l:filename !=# 'gvimrc'
-        echo 'Your file is not vim setting file'
-        return
-    endif
-    let l:filepath = expand('%:p')
-    execute 'silent !cp ' l:filepath . ' ~/.' . l:filename
-    echo 'Copy Your' l:filename . '.'
-endfunction
-
-" vim development
-if exists('g:python_path')
-    nnoremap <C-T><C-O> :call GetPyFile()<CR>
-endif
-
-" For snippet_complete marker.
-if has('conceal')
-  set conceallevel=2
-  set concealcursor=niv
-endif
 
 " Seach option
 xnoremap * :<C-u>call <SID>VSetSearch()<CR>/<C-R>=@/<CR><CR>
@@ -200,3 +99,35 @@ function! s:VSetSearch()
     let @/ = '\V' . substitute(escape(@s, '/\'), '\n', '\\n', 'g')
     let @s = l:temp
 endfunction
+
+" mouse scrolling
+set mouse=a
+set ttymouse=xterm2
+
+" Key mapping
+inoremap # X#
+
+" For snippet_complete marker.
+if has('conceal')
+  set conceallevel=2
+  set concealcursor=niv
+endif
+
+
+" Load development setting
+let g:my_devlopmet_mood = 1
+if g:my_devlopmet_mood== 1
+    let s:plugin_path = fnamemodify(expand('<sfile>'), ':h'
+        \ ) . '/.vim/devtool.vim'
+    " below is same with `source ~/.vim/pluginload.vim`
+    execute 'source' s:plugin_path
+endif
+
+" Load all vim plugin from dein.
+let g:my_plugin_load = 1
+if g:my_plugin_load == 1
+    let s:plugin_path = fnamemodify(expand('<sfile>'), ':h'
+        \ ) . '/.vim/pluginload.vim'
+    " below is same with `source ~/.vim/pluginload.vim`
+    execute 'source' s:plugin_path
+endif
