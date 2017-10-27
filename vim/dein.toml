@@ -16,15 +16,10 @@ repo = 'Shougo/unite.vim'
 on_path = '.*'
 
 [[plugins]]
-repo = 'Shougo/vimfiler.vim'
-depends = ['unite.vim']
-on_path = '.*'
-
-[[plugins]]
 repo = 'scrooloose/syntastic'
 
 [[plugins]]
-repo = 'surround.vim'
+repo = 'tpope/vim-surround'
 
 [[plugins]]
 repo = 'thinca/vim-ref'
@@ -37,9 +32,6 @@ repo = 'mattn/webapi-vim'
 
 [[plugins]]
 repo = 'pyohei/vim-pyimporter'
-
-[[plugins]]
-repo = 'pyohei/vim-hipchat'
 
 [[plugins]]
 repo = 'pyohei/vim-bunshin'
@@ -84,7 +76,10 @@ repo = 'lambdalisue/vim-gita'
 repo = 'davidhalter/jedi-vim'
 
 [[plugins]]
-repo = 'tpope/vim-rails'
+repo = 'tell-k/vim-autopep8'
 
 [[plugins]]
-repo = 'osyo-manga/vim-monster'
+repo = 'vim-ruby/vim-ruby'
+
+[[plugins]]
+repo = 'koron/dicwin-vim'
