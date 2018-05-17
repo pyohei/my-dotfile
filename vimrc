@@ -131,3 +131,5 @@ if g:my_plugin_load == 1
     " below is same with `source ~/.vim/pluginload.vim`
     execute 'source' s:plugin_path
 endif
+
+"let g:syntastic_go_checkers = ['golint']
