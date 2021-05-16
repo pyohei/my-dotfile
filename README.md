@@ -26,5 +26,5 @@ release.bat
 I'm beginner of vim. If possible, please advice my vim settings and script.
 
 
-##LICENSE
+## LICENSE
 * [MIT](https://github.com/pyohei/vim-setting/blob/master/LICENSE)
