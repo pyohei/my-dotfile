@@ -1,3 +1,0 @@
-[[plugins]]
-repo = 'thinca/vim-quickrun'
-on_cmd = ['QR']
