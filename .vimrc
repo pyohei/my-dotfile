@@ -1,16 +1,4 @@
-" ----------------------------------------------------------------------
-" vimrc
-"
-" Author: Shohei Mukai
-" Licence: MIT Licence
-" ----------------------------------------------------------------------
-
 scriptencoding utf-8
-
-" Read configuration
-if filereadable(expand('~/.vimrc.cnf'))
-    source ~/.vimrc.cnf
-endif
 
 " Encoding
 set encoding=utf-8
@@ -47,6 +35,7 @@ set smartindent
 set expandtab
 set softtabstop=4
 set noequalalways
+syntax enable
  
 " Complete
 set wildmenu
@@ -104,32 +93,26 @@ endfunction
 set mouse=a
 set ttymouse=xterm2
 
-" Key mapping
-inoremap # X#
-
-" For snippet_complete marker.
-if has('conceal')
-  set conceallevel=2
-  set concealcursor=niv
+" minpac
+if &compatible
+  set nocompatible
 endif
 
+packadd minpac
 
-" Load development setting
-let g:my_devlopmet_mood = 1
-if g:my_devlopmet_mood== 1
-    let s:plugin_path = fnamemodify(expand('<sfile>'), ':h'
-        \ ) . '/.vim/devtool.vim'
-    " below is same with `source ~/.vim/pluginload.vim`
-    execute 'source' s:plugin_path
-endif
+call minpac#init()
 
-" Load all vim plugin from dein.
-let g:my_plugin_load = 1
-if g:my_plugin_load == 1
-    let s:plugin_path = fnamemodify(expand('<sfile>'), ':h'
-        \ ) . '/.vim/pluginload.vim'
-    " below is same with `source ~/.vim/pluginload.vim`
-    execute 'source' s:plugin_path
-endif
+" minpac must have {'type': 'opt'} so that it can be loaded with `packadd`.
+call minpac#add('k-takata/minpac', {'type': 'opt'})
 
-"let g:syntastic_go_checkers = ['golint']
+" Add other plugins here. call minpac#update()
+call minpac#add('gryf/wombat256grf')
+call minpac#add('tpope/vim-fugitive')
+call minpac#add('prabirshrestha/vim-lsp')
+call minpac#add('mattn/vim-lsp-settings')
+call minpac#add('posva/vim-vue')
+call minpac#add('ctrlpvim/ctrlp.vim')
+
+" Color Scheme
+colorscheme wombat256grf
+
