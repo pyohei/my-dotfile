@@ -113,6 +113,7 @@ call minpac#add('mattn/vim-lsp-settings')
 call minpac#add('posva/vim-vue')
 call minpac#add('ctrlpvim/ctrlp.vim')
 call minpac#add('lambdalisue/fern.vim')
+call minpac#add('wakatime/vim-wakatime')
 
 " Color Scheme
 colorscheme wombat256grf
