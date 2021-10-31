@@ -108,12 +108,17 @@ call minpac#add('k-takata/minpac', {'type': 'opt'})
 " Add other plugins here. call minpac#update()
 call minpac#add('gryf/wombat256grf')
 call minpac#add('tpope/vim-fugitive')
+call minpac#add('airblade/vim-gitgutter')
 call minpac#add('prabirshrestha/vim-lsp')
 call minpac#add('mattn/vim-lsp-settings')
 call minpac#add('posva/vim-vue')
 call minpac#add('ctrlpvim/ctrlp.vim')
 call minpac#add('lambdalisue/fern.vim')
+call minpac#add('lambdalisue/fern-git-status.vim')
 call minpac#add('wakatime/vim-wakatime')
+
+
+let g:gitgutter_highlight_lines = 1
 
 " Color Scheme
 colorscheme wombat256grf
